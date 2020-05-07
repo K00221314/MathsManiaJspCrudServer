@@ -16,7 +16,7 @@
         <div class="login-page">
             <div class="logo">
                 
-                    <img class="logohome" src="${pageContext.request.contextPath}/img/logo1.png" alt="LIT Gallery Logo">
+                    <img class="logohome" src="${pageContext.request.contextPath}/img/logonew2.png">
                
             </div>
             <h1>Sign Up</h1>

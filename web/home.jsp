@@ -26,7 +26,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 <div class="container-fluid">
-    <a class = "navbar-brand" href="#"><h1>Math Mania</h1></a>
+    <a class = "navbar-brand" href="home.jsp"><img src="img/logonew2.png"></a>
     <button class="navbar-toggler" type ="button" data-toggle="collapse" data-target="#navbarResponsive">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -229,7 +229,7 @@ problem solving as with a maths game it will require users to think quickly and 
     <div class="row text-center">
         <div class="col-md-4">
            <!--<img src="img/w3newbie.png">-->
-           <h1>Math Mania</h1>
+           <img src="img/logonew3.png">
             
             
         </div>
@@ -239,12 +239,11 @@ problem solving as with a maths game it will require users to think quickly and 
         </div>
         
           <div class="col-md-4">
-            <hr class="light">
-            <h5>footer</h5>
+            <h5>By Robert Daly</h5>
              <hr class="light">
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
+            <p>K00221314</p>
+            <p>IDM4</p>
+            <p>LIT</p>
             
         </div>
         
