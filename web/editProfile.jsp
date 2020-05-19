@@ -1,9 +1,3 @@
-<%-- 
-    Document   : newjsp
-    Created on : 10-Dec-2018, 11:32:24
-    Author     : K00214105
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User"%>
 <!doctype html>
@@ -20,7 +14,7 @@
 
         <div class="login-page">
             <div class="logo">               
-                    <img class="logohome" src="${pageContext.request.contextPath}/img/logo1.png" alt="LIT Gallery Logo">
+                <img class="logohome" src="img/logonew3.png">
             </div>
             <h1>Edit Profile</h1>
             <div class="form">
@@ -45,21 +39,21 @@
                     <label>Bio</label>
                     <input type="text" name="bio" id="bio" value="${user.bio}" maxlength="400"/>
                     <br>
-                    
-					
-					<label>Profile Picture</label>
-      
+
+
+                    <label>Profile Picture</label>
+
                     <br>
-					 <select name="profilePic" id="pic">
+                    <select name="profilePic" id="pic">
 
                         <option name="profilePic" id="pic" value = "1.jpg">Image1</option>
                         <option name="profilePic" id="pic" value = "ISD">ISD</option>
 
                     </select>
-					
-					<br>
 
-                 
+                    <br>
+
+
 
                     <input type="submit" name="menu" value="Save User Details"/>
                     <input type="reset" />

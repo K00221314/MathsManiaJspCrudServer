@@ -1,8 +1,3 @@
-<%-- 
-    Document   : invalid
-    Created on : 19-Dec-2016, 18:25:23
-    Author     : AMarie
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

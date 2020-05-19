@@ -15,7 +15,7 @@
 
         <div class="login-page">
             <div class="logo">             
-               <img class="logohome" src="${pageContext.request.contextPath}/img/logo1.png" alt="LIT Gallery Logo">             
+                <img class="logohome" src="img/logonew3.png">           
             </div>
             <h1>Sign In</h1>
             <div class="form">
@@ -30,7 +30,7 @@
                     <input type="submit" name="menu" value="Process Login"/>
 
                 </form>
-				 <a href="AdminController?menu=Login">Teacher Sign in</a>
+                <a href="AdminController?menu=Login">Teacher Sign in</a>
             </div>
         </div>
         <script

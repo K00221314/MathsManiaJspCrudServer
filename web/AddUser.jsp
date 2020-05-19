@@ -15,9 +15,9 @@
     <body>
         <div class="login-page">
             <div class="logo">
-                
-                    <img class="logohome" src="${pageContext.request.contextPath}/img/logonew2.png">
-               
+
+                <img class="logohome" src="${pageContext.request.contextPath}/img/logonew2.png">
+
             </div>
             <h1>Sign Up</h1>
             <div class="form">
@@ -37,31 +37,31 @@
                     <input type="text" name="username" id="username"/>
                     <br>
                     <label>Profile Picture</label>
-      
+
                     <br>
-					 <select name="profile_pic" id="pic">
+                    <select name="profile_pic" id="pic">
 
                         <option name="profile_pic" id="pic" value = "1.jpg">Image1</option>
                         <option name="profile_pic" id="pic" value = "ISD">ISD</option>
 
                     </select>
-					
-					<br>
-					<br>
+
+                    <br>
+                    <br>
                     <label>Password</label>
                     <input type="password" name="password" id="password"/>
                     <br>
                     <label>Bio</label>
                     <input type="text" name="bio" id="bio"/>
                     <br>
-          
 
-                   
-               
 
-                <input type="submit" name="menu" value="Save" />
-                <input type="reset" />
- </form>
+
+
+
+                    <input type="submit" name="menu" value="Save" />
+                    <input type="reset" />
+                </form>
             </div>
         </div
         <script

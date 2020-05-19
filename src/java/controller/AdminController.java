@@ -1,10 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +18,6 @@ import model.Admin;
 public class AdminController extends HttpServlet
 {
 
-	private final String loginSessionKey = "admin";
-
 //    /**
 //     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
 //     * methods.
@@ -28,17 +28,14 @@ public class AdminController extends HttpServlet
 //     * @throws IOException if an I/O error occurs
 //     */
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException
+			throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		Object sessionObject = session.getAttribute(loginSessionKey);
-
-		Admin adminUser = (Admin) sessionObject;
-		if (adminUser == null)
+		Admin user1 = (Admin) session.getAttribute("user");
+		if (user1 == null)
 		{
-			System.out.println("no admin user object");
-			adminUser = new Admin();
-			session.setAttribute(loginSessionKey, adminUser);
+			user1 = new Admin();
+			session.setAttribute("user1", user1);
 		}
 
 		String menu = "home";
@@ -67,8 +64,8 @@ public class AdminController extends HttpServlet
 				gotoPage("/home.jsp", request, response);
 				break;
 			case "Update":
-				ProcessUpdate(request, session, adminUser);
-				gotoPage("/AdminHomepage.jsp", request, response);
+				ProcessUpdate(request, session, user1);
+				gotoPage("/manageUsers.jsp", request, response);
 				break;
 			case "updateUser":
 				gotoPage("/detailedUserView.jsp", request, response);
@@ -83,14 +80,9 @@ public class AdminController extends HttpServlet
 				allusers2 = user2.getAllUsers();
 
 				session.setAttribute("allusers", allusers2);
-				gotoPage("/manageUsers2.jsp", request, response);
+				gotoPage("/manageUsers.jsp", request, response);
 				break;
-//            case "AddNotice":
-//                gotoPage("/AddNotice.jsp", request, response);
-//                break;
-//            case "delete":
-//                gotoPage("/login.jsp", request, response);
-//                break; 
+
 			case "Process Login":
 				boolean validLogin = ProcessLogin(request, session);
 				if (!validLogin)
@@ -141,32 +133,13 @@ public class AdminController extends HttpServlet
 				ArrayList<Admin> allusers = new ArrayList<>();
 				allusers = users.getAllUsers();
 				session.setAttribute("allusers", allusers);
-				gotoPage("/manageusers2.jsp", request, response);
+				gotoPage("/manageUsers.jsp", request, response);
 				System.out.println("in switch");
 				break;
 
-			case "homepage":
-				gotoPage("/homepage.jsp", request, response);
-
-				break;
-
-			case "profile":
-				gotoPage("/profilepage.jsp", request, response);
-
-				break;
-
-			case "gallery":
-				gotoPage("/gallery.jsp", request, response);
-
-				break;
-
-			case "showspage":
-				gotoPage("/userShowPage.jsp", request, response);
-
-				break;
 
 			case "Save User Details":
-				boolean worked1 = ProcessUserUpdate(request, adminUser, session);
+				boolean worked1 = ProcessUserUpdate(request, user1, session);
 				gotoPage("/profile_Admin.jsp", request, response);
 				break;
 
@@ -174,21 +147,18 @@ public class AdminController extends HttpServlet
 				gotoPage("/invalid.jsp", request, response);
 				break;
 
-//            default:
-//                gotoPage("/invalid.jsp", request, response);
-//                break;
+
 		}
 	}
 
-	private boolean ProcessLogin(HttpServletRequest request, HttpSession session) throws SQLException
+	private boolean ProcessLogin(HttpServletRequest request, HttpSession session)
 	{
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-//        String AccountType = request.getParameter("AccountType");
 		Admin us = new Admin(username, password);
 		us.Login(username, password);
-		session.setAttribute(loginSessionKey, us);
+		session.setAttribute("user", us);
 
 		if (us.getUser_id() != 0)
 		{
@@ -199,7 +169,7 @@ public class AdminController extends HttpServlet
 		}
 	}
 
-	private void ProcessSave(HttpServletRequest request, HttpSession session) throws SQLException
+	private void ProcessSave(HttpServletRequest request, HttpSession session)
 	{
 
 		String f_name = request.getParameter("f_name");
@@ -211,7 +181,6 @@ public class AdminController extends HttpServlet
 
 		String bio = request.getParameter("bio");
 
-//        String AccountType=request.getParameter("AccountType");
 		System.out.println(f_name);
 		Admin us = new Admin(f_name, l_name, email, username, profile_pic, password, bio);
 		us.saveToDatabase();
@@ -243,13 +212,7 @@ public class AdminController extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		try
-		{
-			processRequest(request, response);
-		} catch (SQLException ex)
-		{
-			Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		processRequest(request, response);
 	}
 
 	/**
@@ -264,13 +227,7 @@ public class AdminController extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		try
-		{
-			processRequest(request, response);
-		} catch (SQLException ex)
-		{
-			Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		processRequest(request, response);
 	}
 
 	/**
@@ -295,7 +252,6 @@ public class AdminController extends HttpServlet
 
 		String bio = request.getParameter("bio");
 
-//         String AccountType=request.getParameter("AccountType");
 		System.out.println("f_name");
 		Admin us = new Admin(user.getUser_id(), f_name, l_name, email, username, profile_pic, password, bio);
 
@@ -326,10 +282,9 @@ public class AdminController extends HttpServlet
 		System.out.println("in process update");
 
 		Admin u = user.updateDatabase(UserID, f_name, l_name, email, username, profile_pic, password, bio);
-		// put it back in the sesssion
+
 		System.out.println("after update");
 		session.setAttribute("user", u);
 		return true;
 	}
-
 }

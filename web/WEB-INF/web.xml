@@ -5,40 +5,40 @@
         <servlet-class>controller.UserController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>NoticeController</servlet-name>
-        <servlet-class>controller.NoticeController</servlet-class>
+        <servlet-name>ResultsController</servlet-name>
+        <servlet-class>controller.ResultsController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminController</servlet-name>
         <servlet-class>controller.AdminController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ShowsController</servlet-name>
-        <servlet-class>controller.ShowsController</servlet-class>
+        <servlet-name>ReslutController</servlet-name>
+        <servlet-class>controller.ResultController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EnteriesController3</servlet-name>
-        <servlet-class>controller.EnteriesController3</servlet-class>
+        <servlet-name>ResultController</servlet-name>
+        <servlet-class>controller.ResultController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>NoticeController</servlet-name>
-        <url-pattern>/NoticeController</url-pattern>
+        <servlet-name>ResultsController</servlet-name>
+        <url-pattern>/ResultsController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminController</servlet-name>
         <url-pattern>/AdminController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ShowsController</servlet-name>
-        <url-pattern>/ShowsController</url-pattern>
+        <servlet-name>ReslutController</servlet-name>
+        <url-pattern>/ReslutController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EnteriesController3</servlet-name>
-        <url-pattern>/EnteriesController3</url-pattern>
+        <servlet-name>ResultController</servlet-name>
+        <url-pattern>/ResultController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

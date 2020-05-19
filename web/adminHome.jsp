@@ -1,298 +1,263 @@
-<%-- 
-    Document   : register
-    Created on : 07-Dec-2016, 21:39:41
-    Author     : AMarie
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@page import="model.Admin"%>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Math Mania</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-	<link href="css/styles.css" rel="stylesheet">
-</head>
-<body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Maths Mania</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <link href="css/styles.css" rel="stylesheet">
+    </head>
+    <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-<div class="container-fluid">
-    <a class = "navbar-brand" href="adminHome.jsp"><img src="img/logonew2.png"></a>
-    <button class="navbar-toggler" type ="button" data-toggle="collapse" data-target="#navbarResponsive">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="adminHome.jsp">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="about_Admin.jsp">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="gallery_Admin.jsp">Gallery</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="profile_Admin.jsp">Profile</a>
-            </li>
-			<li class="nav-item">
-                <a class="nav-link" href="AdminControllPage.jsp">Edit</a>
-            </li>
-			
-			<li class="nav-item">
-			 <form action="AdminController" class="login-form">  
-                            <input type="submit" name="menu" value="Logout" class="btn btn-primary btn-lrg" />
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+            <div class="container-fluid">
+                <a class = "navbar-brand" href="adminHome.jsp"><img src="img/logonew2.png"></a>
+                <button class="navbar-toggler" type ="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="adminHome.jsp">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about_Admin.jsp">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="gallery_Admin.jsp">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile_Admin.jsp">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="AdminControllPage.jsp">Edit</a>
+                        </li>
 
-                        </form>
-				
-			</li>
-            
-        </ul>
-        
-        
-    </div>
-</div>
-    
-    
-</nav>
+                        <li class="nav-item">
+                            <form action="AdminController" class="login-form">  
+                                <input type="submit" name="menu" value="Logout" class="btn btn-primary btn-lrg" />
 
-<!--- Image Slider -->
-<div id="slides" class="carousel slide" data-ride="carousel">
-    <ul class="carousel-indicators">
-        <li data-target="#slides" data-slide-to="0" class="active"></li>
-         <li data-target="#slides" data-slide-to="1"></li>
-          <li data-target="#slides" data-slide-to="2"></li>
-    </ul>
-    <div class="carousel-inner">
-       
-        <div class="carousel-item active">
-            <img src="img/test.png">
-            <div class="carousel-caption">
-                <h1 class="display-2">Welcome</h1>
-                <h3>To Math Mania</h3>
-                <button type="button" class="btn btn-primary btn-lrg">Download</button>
-                
+                            </form>
+
+                        </li>
+
+                    </ul>
+
+
+                </div>
+            </div>
+
+
+        </nav>
+
+        <!--- Image Slider -->
+        <div id="slides" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#slides" data-slide-to="0" class="active"></li>
+                <li data-target="#slides" data-slide-to="1"></li>
+                <li data-target="#slides" data-slide-to="2"></li>
+            </ul>
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <img src="img/test.png">
+                    <div class="carousel-caption">
+                        <h1 class="display-2">Welcome</h1>
+                        <h3>To Math Mania</h3>
+                        <button type="button" class="btn btn-primary btn-lrg">Download</button>
+
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="img/test.png">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="img/test.png">
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+        <!--- Welcome Section -->
+
+        <div class="container-fluid padding">
+            <div class="row welcome text-center">
+                <div class="col-12">
+                    <h1 class="display-4">Math Mania</h1>
+                </div>
+                <hr>
+                <div class="col-12">
+                    <p class="lead">A Virtual reality application for primary school children.</p>
+                </div>
+
             </div>
         </div>
-        
-        <div class="carousel-item">
-            <img src="img/test.png">
+
+
+        <!--- Three Column Section -->
+        <div class="container-fluid padding">
+            <div class="row text-center padding">
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Objective</h3>
+                    <p>The objective of this game is to create a virtual reality environment that allows children to learn and practice their maths skills.
+                    </p>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <i class="fas fa-crosshairs"></i>
+                    <h3>Aim</h3>
+                    <p>The main aims of this educational Virtual Reality game is to achieve learning in a fun way. I hope to motivate children who are struggling with maths to realise they are capable and can solve problems.
+                    </p>
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Background</h3>
+                    <p>Maths is currently a major talking point in Ireland with the introduction of the new curriculum which is believed to be introduced in 2021. </p>
+                </div>
+
+            </div>
+            <hr class="my-4">
         </div>
-        
-        <div class="carousel-item">
-            <img src="img/test.png">
+
+        <!--- Two Column Section -->
+        <div class="container-fluid padding">
+            <div class="row padding">
+                <div class="col-lg-6">
+
+                    <h2>What is Virtual Reality ?</h2>
+                    <br>
+                    <p>Virtual reality (VR) is a simulated experience that can be similar to or completely different from the real world.</p>
+                    <p>Applications of virtual reality can include entertainment (i.e. video games) and educational purposes (i.e. medical or military training). Other, distinct types of VR style technology include augmented reality and mixed reality.</p>
+                    <p>Currently standard virtual reality systems use either virtual reality headsets or multi-projected environments to generate realistic images, sounds and other sensations that simulate a user's physical presence in a virtual environment. A person using virtual reality equipment is able to look around the artificial world, move around in it, and interact with virtual features or items.</p>
+                    <p>The effect is commonly created by VR headsets consisting of a head-mounted display with a small screen in front of the eyes, but can also be created through specially designed rooms with multiple large screens.</p>
+                    <p>  Virtual reality typically incorporates auditory and video feedback, but may also allow other types of sensory and force feedback through haptic technology.</p>
+                    <p>Math Mania has been designed to use the HTC Vive headset and takes full advantage of the headsets capabilities to give the user a fun and immersive experience</p>
+
+                    <br>
+
+
+
+
+
+
+
+
+                </div>
+                <div class="col-lg-6">
+                    <img src="img/Untitled-1.png" class="img-fluid">
+                </div>
+
+
+            </div>
+
+            <div class="row padding">
+                <div class="col-lg-6">
+                    <img src="img/vr-children_feature.jpg" class="img-fluid">
+                </div>
+
+                <div class="col-lg-6">
+                    <h2>Learning through educational games</h2>
+                    <br>
+                    <p>The goal of this interactive VR game is to promote the learning of Maths. Educational games refer to
+                        “complex systems that include pre-defined roles of participants and strictly defined objectives
+                        through interactive activities with goals and rewards” (Research Gate.)
+                        As it is a “educational game” this has many benefits to achieve the goal of educating children with
+                        maths.</p>
+                    <p>Currently gaming is one of the biggest industries in the world, according to the latest Global Games
+                        Market Report by Newzoo (2018), video games generate $137.9 billion per year
+                        (Lpesports.com.2019).</p>
+                    <p>Research shows that the average 8 to 12-year-old plays 13 hours of video games a week (Martin and
+                        Oppenhiem – 2007). This shows that students are naturally motivated to play games and if
+                        education can be adapted through such a highly motivational media, it is a win-win for both students
+                        and teachers.</p>
+                    <p>There are many benefits to game based learning, it can increase a child’s memory capacity as games
+                        often revolve around the utilization of memory, it can provide computer and simulation fluency as
+                        playing games allows children to get used to how a computer works and teaches them the basics
+                        such as creating an account for a website etc, it can also help with fast strategic thinking and
+                        problem solving as with a maths game it will require users to think quickly and logically.
+                        (TeachThought)</p>
+                    <br>
+
+                </div>
+
+
+
+            </div>
+
+            <hr class="my-4">  
         </div>
-    </div>
-    
-    
-    
-    
-</div>
 
 
-<!--- Welcome Section -->
-
-<div class="container-fluid padding">
-    <div class="row welcome text-center">
-        <div class="col-12">
-            <h1 class="display-4">Math Mania</h1>
-        </div>
-        <hr>
-         <div class="col-12">
-            <p class="lead">A Virtual reality application for primary school children.</p>
-        </div>
-        
-    </div>
-</div>
 
 
-<!--- Three Column Section -->
-<div class="container-fluid padding">
-    <div class="row text-center padding">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <i class="fas fa-code"></i>
-            <h3>Icon1</h3>
-            <p>gbiugbeweiugbwieugbiweugb</p>
-        </div>
-        
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <i class="fas fa-code"></i>
-            <h3>Icon1</h3>
-            <p>gbiugbeweiugbwieugbiweugb</p>
-        </div>
-        
-        <div class="col-sm-12 col-md-4">
-            <i class="fas fa-code"></i>
-            <h3>Icon1</h3>
-            <p>gbiugbeweiugbwieugbiweugb</p>
-        </div>
-        
-    </div>
-    <hr class="my-4">
-</div>
-
-<!--- Two Column Section -->
-<div class="container-fluid padding">
-    <div class="row padding">
-       <div class="col-lg-6">
-           <h2>Title</h2>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur assumenda illo ea nesciunt magni quaerat sed incidunt earum facere est quae quo explicabo, fugiat culpa eos? Iste, excepturi, doloremque nesciunt delectus rerum cum omnis incidunt officiis aperiam dolor reprehenderit nam!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur assumenda illo ea nesciunt magni quaerat sed incidunt earum facere est quae quo explicabo, fugiat culpa eos? Iste, excepturi, doloremque nesciunt delectus rerum cum omnis incidunt officiis aperiam dolor reprehenderit nam!</p>
-            <br>
-            <a href="#" class="btn btn-primary">Learn More</a>
-       </div>
-       <div class="col-lg-6">
-           <img src="img/test.png" class="img-fluid">
-       </div>
-       
-        
-    </div>
-    
-    <div class="row padding">
-        <div class="col-lg-6">
-           <img src="img/test.png" class="img-fluid">
-       </div>
-          
-          <div class="col-lg-6">
-           <h2>Title</h2>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur assumenda illo ea nesciunt magni quaerat sed incidunt earum facere est quae quo explicabo, fugiat culpa eos? Iste, excepturi, doloremque nesciunt delectus rerum cum omnis incidunt officiis aperiam dolor reprehenderit nam!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur assumenda illo ea nesciunt magni quaerat sed incidunt earum facere est quae quo explicabo, fugiat culpa eos? Iste, excepturi, doloremque nesciunt delectus rerum cum omnis incidunt officiis aperiam dolor reprehenderit nam!</p>
-            <br>
-            <a href="#" class="btn btn-primary">Learn More</a>
-       </div>
-      
-       
-        
-    </div>
-    
-    
-</div>
-
-  
-<!--- Meet the team -->
-<div class="container-fluid padding">
-    <div class="row welcome text-center">
-        <div class="col-12">
-            <h1 class="display-4">Title </h1>
-        </div>
-        <hr>
-    </div>
-    
-</div>
 
 
-<!--- Cards -->
-<div class="container-fluid padding">
-    <div class="row padding">
-        <div class="col-md-4">
-            <div class="card">
-                <img class="card-img-top" src="img/test.png">
-                <div class="card-body">
-                    <h4 class="card-title">Test</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis necessitatibus totam, ipsam harum est consequuntur magnam dolore nulla ab? Harum.</p>
-                    <a href="#" class="btn btn-outline-secondary">Button</a>
+        <!--- Connect -->
+        <div class="container-fluid padding">
+            <div class="row text-center padding">
+                <div class="col-12">
+                    <h2>Connect</h2>
+                </div>
+                <div class="col-12 social padding">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
-        
-        <div class="col-md-4">
-            <div class="card">
-                <img class="card-img-top" src="img/test.png">
-                <div class="card-body">
-                    <h4 class="card-title">Test</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis necessitatibus totam, ipsam harum est consequuntur magnam dolore nulla ab? Harum.</p>
-                    <a href="#" class="btn btn-outline-secondary">Button</a>
+
+        <!--- Footer -->
+        <footer>
+            <div class="container-fluid padding">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <!--<img src="img/w3newbie.png">-->
+                        <img src="img/logonew3.png">
+
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>By Robert Daly</h5>
+                        <hr class="light">
+                        <p>K00221314</p>
+                        <p>IDM4</p>
+                        <p>LIT</p>
+
+                    </div>
+
+                    <div class="col-12">
+                        <hr class="light-1ong">
+                        <h5>&copy; Robert Daly</h5>  
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="col-md-4">
-            <div class="card">
-                <img class="card-img-top" src="img/test.png">
-                <div class="card-body">
-                    <h4 class="card-title">Test</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis necessitatibus totam, ipsam harum est consequuntur magnam dolore nulla ab? Harum.</p>
-                    <a href="#" class="btn btn-outline-secondary">Button</a>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-    
-</div>
 
 
+        </footer>
 
-
-<!--- Connect -->
-<div class="container-fluid padding">
-    <div class="row text-center padding">
-        <div class="col-12">
-            <h2>Connect</h2>
-        </div>
-        <div class="col-12 social padding">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-             <a href="#"><i class="fab fa-youtube"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-    </div>
-</div>
-
-<!--- Footer -->
-<footer>
-<div class="container-fluid padding">
-    <div class="row text-center">
-        <div class="col-md-4">
-           <!--<img src="img/w3newbie.png">-->
-           <h1>Math Mania</h1>
-            <hr class="light">
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
-             <p>gbskgbsgjbsogb</p>
-            
-        </div>
-        
-          <div class="col-md-4">
-            <hr class="light">
-            <h5>footer</h5>
-             <hr class="light">
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
-            
-        </div>
-        
-          <div class="col-md-4">
-            <hr class="light">
-            <h5>footer</h5>
-             <hr class="light">
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
-            
-        </div>
-        
-        <div class="col-12">
-           <hr class="light-1ong">
-           <h5>&copy; Robert Daly</h5>  
-        </div>
-    </div>
-</div>
-
-
-    </footer>
-
-</body>
+    </body>
 </html>
 
 

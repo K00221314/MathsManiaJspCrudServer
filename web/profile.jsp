@@ -11,7 +11,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Math Mania</title>
+	<title>Maths Mania</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -24,7 +24,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 <div class="container-fluid">
-    <a class = "navbar-brand" href="#"><img src="img/logo.png"></a>
+    <a class = "navbar-brand" href="userHome.jsp"><img src="img/logonew2.png"></a>
     <button class="navbar-toggler" type ="button" data-toggle="collapse" data-target="#navbarResponsive">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,6 +36,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="about_User.jsp">About</a>
             </li>
+            <li class="nav-item">
+                            <a class="nav-link" href="quiz/quiz.html">Quiz</a>
+                        </li>
             <li class="nav-item">
                 <a class="nav-link" href="gallery_User.jsp">Gallery</a>
             </li>
@@ -97,37 +100,27 @@
 <div class="container-fluid padding">
     <div class="row text-center">
         <div class="col-md-4">
-            <img src="img/w3newbie.png">
-            <hr class="light">
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
-             <p>gbskgbsgjbsogb</p>
+           <!--<img src="img/w3newbie.png">-->
+           <img src="img/logonew3.png">
+            
             
         </div>
         
           <div class="col-md-4">
-            <hr class="light">
-            <h5>footer</h5>
-             <hr class="light">
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
-            
+          
         </div>
         
           <div class="col-md-4">
-            <hr class="light">
-            <h5>footer</h5>
+            <h5>By Robert Daly</h5>
              <hr class="light">
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
-            <p>gbskgbsgjbsogb</p>
+            <p>K00221314</p>
+            <p>IDM4</p>
+            <p>LIT</p>
             
         </div>
         
         <div class="col-12">
-           <hr class="light">
+           <hr class="light-1ong">
            <h5>&copy; Robert Daly</h5>  
         </div>
     </div>

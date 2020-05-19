@@ -1,12 +1,10 @@
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Admin"%>
 <!doctype html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Untitled Document</title>
+        <title>Admin Login</title>
         <link href="${pageContext.request.contextPath}/css/form.css" rel="stylesheet" type="text/css">
         <meta name="viewport" content="width=device-width , initial-scale=1.0">
     </head>
@@ -15,7 +13,7 @@
         <div class="login-page">
             <div class="logo">
                 <a href="index.html">
-                    <img class="logohome" src="img/logonew3.png" alt="LIT Gallery Logo">
+                    <img class="logohome" src="img/logonew3.png">
                 </a>
             </div>
             <h1>Teacher Sign In</h1>
@@ -31,7 +29,7 @@
                     <br>
                     <p class="message">${message}</p>               
                     <input type="submit" name="menu" value="Process Login" />
-                   
+
 
                 </form>
             </div>

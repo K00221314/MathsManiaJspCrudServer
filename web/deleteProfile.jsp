@@ -1,9 +1,3 @@
-<%-- 
-    Document   : deleteProfile
-    Created on : 10-Dec-2018, 13:55:42
-    Author     : K00214105
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
@@ -20,7 +14,7 @@
         <div class="login-page">
             <div class="logo">
                 <a href="index.html">
-                    <img class="logohome" src="${pageContext.request.contextPath}/img/logo1.png" alt="LIT Gallery Logo">
+                    <img class="logohome" src="img/logonew3.png">
                 </a>
             </div>
             <h1>Delete Profile</h1>
@@ -40,7 +34,7 @@
                     <br>
 
                     <input type="submit" name="menu" value="Delete User"/>
-                    
+
                 </form>
             </div>
         </div>
