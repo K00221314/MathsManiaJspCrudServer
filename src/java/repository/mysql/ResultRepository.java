@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import model.DatabaseUtilityClass;
+import model.DatabaseAgent;
 import entities.Results;
 
 /**
@@ -37,7 +37,7 @@ public class ResultRepository
 	 */
 	public static boolean deleteResult(Results result) throws SQLException
 	{
-		Connection connection = DatabaseUtilityClass.getConnection();
+		Connection connection = DatabaseAgent.getConnection();
 		String sql = "DELETE FROM results WHERE results.Id=?;";
 		try
 		{
@@ -60,7 +60,7 @@ public class ResultRepository
 	 */
 	public static Results getResultById(int Id) throws SQLException
 	{
-		Connection connection = DatabaseUtilityClass.getConnection();
+		Connection connection = DatabaseAgent.getConnection();
 		try
 		{
 			String sqlQuery = "SELECT * FROM results WHERE Id = ?;";
@@ -85,7 +85,7 @@ public class ResultRepository
 
 	public static ArrayList<Results> getResults() throws SQLException
 	{
-		Connection connection = DatabaseUtilityClass.getConnection();
+		Connection connection = DatabaseAgent.getConnection();
 		try
 		{
 			String sqlQuery = "Select * from results";
@@ -115,7 +115,7 @@ public class ResultRepository
 	 */
 	public static int insertResult(Results result) throws SQLException, Exception
 	{
-		Connection connection = DatabaseUtilityClass.getConnection();
+		Connection connection = DatabaseAgent.getConnection();
 		try
 		{
 			String insertSql = "INSERT INTO results (category,type,difficulty,question,correct_answer,incorrect_answers1) VALUES (?,?,?,?,?,?);";
@@ -138,33 +138,28 @@ public class ResultRepository
 		}
 	}
 
-	public static Results updateResult(Results result)
+	public static void updateResult(Results result) throws SQLException
 	{
-		Connection connection = DatabaseUtilityClass.getConnection();
-		String sql = "UPDATE results SET  category = ?,type = ?,difficulty = ?, question = ?,correct_answer = ?, incorrect_answers1 = ? WHERE Id=?;";
+		Connection connection = DatabaseAgent.getConnection();
 
 		try
 		{
-			PreparedStatement ps = connection.prepareStatement(sql);
-			ps.setString(1, result.getCategory());
-			ps.setString(2, result.getType());
-			ps.setString(3, result.getDifficulty());
-			ps.setString(4, result.getQuestion());
-			ps.setString(5, result.getCorrect_answer());
-			ps.setString(6, result.getIncorrect_answers1());
+			String updateSqlStatement = "UPDATE results SET  category = ?,type = ?,difficulty = ?, question = ?,correct_answer = ?, incorrect_answers1 = ? WHERE Id=?;";
+			PreparedStatement preparedStatement = connection.prepareStatement(updateSqlStatement);
+			preparedStatement.setString(1, result.getCategory());
+			preparedStatement.setString(2, result.getType());
+			preparedStatement.setString(3, result.getDifficulty());
+			preparedStatement.setString(4, result.getQuestion());
+			preparedStatement.setString(5, result.getCorrect_answer());
+			preparedStatement.setString(6, result.getIncorrect_answers1());
+			preparedStatement.setInt(7, result.getId());
 
-			ps.setInt(7, result.getId());
-
-			ps.executeUpdate();
-			connection.close();
-
+			preparedStatement.executeUpdate();
 		}
-		catch (SQLException ex)
+		finally
 		{
-			System.out.println(ex);
-			System.out.println("in update results");
+			connection.close();
 		}
-		return result;
 	}
 
 	/*
