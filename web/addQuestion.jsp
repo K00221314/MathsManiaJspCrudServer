@@ -29,7 +29,12 @@
                     <input type="text" name="type" id="type" value="3rd class"/>
                     <br>
                     <label>difficulty</label>
-                    <input type="text" name="difficulty" id="difficulty" value="Easy"/>
+
+					<select name="difficulty" id="difficulty" >
+						<option value="Easy" selected="true">Easy</option>
+						<option value="Medium">Medium</option>
+						<option value="Hard">Hard</option>
+					</select>
                     <br>
                     <label>question</label>
                     <input type="text" name="question" id="question"/>
@@ -37,9 +42,17 @@
                     <label>correct answer</label>
                     <input type="text" name="correct_answer" id="correct_answer"/>
                     <br>
-                    <label>incorrect answers</label>
-                    <input type="text" name="incorrect_answers1" id="incorrect_answers1"/>
                     <br>
+                    <label for="incorrect_answer1">incorrect answer 1</label>
+                    <input type="text" name="incorrect_answer1" id="incorrect_answers1"/>
+                    <br>
+                    <label for="incorrect_answer2">incorrect answer 2</label>
+                    <input type="text" name="incorrect_answer2" id="incorrect_answers2"/>
+                    <br>
+                    <label for="incorrect_answer3">incorrect answer 3</label>
+                    <input type="text" name="incorrect_answer3" id="incorrect_answers3"/>
+                    <br>
+
 
 
 

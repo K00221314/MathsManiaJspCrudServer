@@ -80,7 +80,7 @@ public class ResultsController extends HttpServlet
 		{
 			ArrayList<Results> allresults = ResultRepository.getResults();
 			session.setAttribute("allresults", allresults);
-			gotoPage("/"+ WebsiteMap.ManageResults, request, response);
+			gotoPage("/" + WebsiteMap.ManageResults, request, response);
 		}
 		catch (SQLException ex)
 		{
@@ -127,9 +127,11 @@ public class ResultsController extends HttpServlet
 		String difficulty = request.getParameter("difficulty");
 		String question = request.getParameter("question");
 		String correct_answer = request.getParameter("correct_answer");
-		String incorrect_answers1 = request.getParameter("incorrect_answers1");
+		String incorrect_answer1 = request.getParameter("incorrect_answer1");
+		String incorrect_answer2 = request.getParameter("incorrect_answer2");
+		String incorrect_answer3 = request.getParameter("incorrect_answer3");
 
-//        
+		String incorrect_answers1 = incorrect_answer1 + " " + incorrect_answer2 + " " + incorrect_answer3;
 		System.out.println(category);
 		Results res = new Results(category, type, difficulty, question, correct_answer, incorrect_answers1);
 		try
