@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import repository.mysql.ResultRepository;
-
 import entities.Results;
 
 public class ResultsController extends HttpServlet
@@ -31,12 +30,12 @@ public class ResultsController extends HttpServlet
 			throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		Results result = (Results) session.getAttribute("result");
-		if (result == null)
-		{
-			result = new Results();
-			session.setAttribute("result", result);
-		}
+		Results result = SessionManager.getSessionResultValue(session);
+//		if (result == null)
+//		{
+//			result = new Results();
+//			SessionManager.setSessionResultValue(session, result);
+//		}
 
 		String menu = request.getParameter("menu");
 
@@ -44,37 +43,30 @@ public class ResultsController extends HttpServlet
 		{
 			menu = "home";
 		}
-		switch (menu)
+		switch (menu.toLowerCase())
 		{
-
-			case "Save":
-				processCreate(request, session);
-				gotoPage("/AdminControllPage.jsp", request, response);
-				break;
-
-			case "updateResults":
-				gotoPage("/detailedResultsView.jsp", request, response);
-				break;
-			case "DeleteResults":
+			case "deleteresults":
 				processDelete(request, session, response);
+				processGetAll(session, request, response);
 				break;
-
-			case "Update":
-				processUpdate(request, session, result);
-				gotoPage("/manageResults.jsp", request, response);
-				break;
-			case "getResultsView":
+			case "getresultsview":
 				proeessGetOne(request, session, response);
 				break;
-
 			case "home":
 				processGetAll(session, request, response);
 				break;
-
-			case "SaveResultDetails":
-				boolean worked1 = processResultsUpdate(request, result, session);
-				gotoPage("/manageResults.jsp", request, response);
+			case "save":
+				processCreate(request, session);
+				processGetAll(session, request, response);
 				break;
+			case "update"://case "SaveResultDetails":
+				processUpdate(request, session, result);
+				processGetAll(session, request, response);
+				break;
+			case "updateresults":
+				gotoPage("/detailedResultsView.jsp", request, response);
+				break;
+
 			default:
 				gotoPage("/invalid.jsp", request, response);
 				break;
@@ -88,7 +80,7 @@ public class ResultsController extends HttpServlet
 		{
 			ArrayList<Results> allresults = ResultRepository.getResults();
 			session.setAttribute("allresults", allresults);
-			gotoPage("/manageResults.jsp", request, response);
+			gotoPage("/"+ WebsiteMap.ManageResults, request, response);
 		}
 		catch (SQLException ex)
 		{
@@ -108,17 +100,6 @@ public class ResultsController extends HttpServlet
 		{
 			Logger.getLogger(ResultsController.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		ArrayList<Results> allresults2;
-		try
-		{
-			allresults2 = ResultRepository.getResults();
-			session.setAttribute("allresults", allresults2);
-			gotoPage("/manageResults.jsp", request, response);
-		}
-		catch (SQLException ex)
-		{
-			Logger.getLogger(ResultsController.class.getName()).log(Level.SEVERE, null, ex);
-		}
 	}
 
 	private void proeessGetOne(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException, ServletException, NumberFormatException
@@ -128,14 +109,8 @@ public class ResultsController extends HttpServlet
 		try
 		{
 			Results result = ResultRepository.getResultById(resultId);
-			if (result != null)
-			{
-				session.setAttribute("results", result);
-			}
-			else
-			{
-				System.out.println("results details null");
-			}
+			SessionManager.setSessionResultValue(session, result);
+			session.setAttribute("results", result);
 			gotoPage("/detailedResultsView.jsp", request, response);
 		}
 		catch (SQLException ex)
@@ -170,8 +145,7 @@ public class ResultsController extends HttpServlet
 			Logger.getLogger(ResultsController.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		session.setAttribute("result", res);
-
+		SessionManager.setSessionResultValue(session, res);
 	}
 
 	private void gotoPage(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -222,51 +196,42 @@ public class ResultsController extends HttpServlet
 		return "Short description";
 	}// </editor-fold>
 
-	private void processUpdate(HttpServletRequest request, HttpSession session, Results result)
+	private boolean processUpdate(HttpServletRequest request, HttpSession session, Results result)
 	{
-		String category = request.getParameter("category");
-		String type = request.getParameter("type");
-		String difficulty = request.getParameter("difficulty");
-		String question = request.getParameter("question");
-		String correct_answer = request.getParameter("correct_answer");
-		String incorrect_answers1 = request.getParameter("incorrect_answers1");
+		Results newResult = transformRequestParametersIntoResult(request);
+		newResult.setId(result.getId());
 
-		System.out.println("category");
-		Results res = new Results(result.getId(), category, type, difficulty, question, correct_answer, incorrect_answers1);
+		try
+		{
+			ResultRepository.updateResult(newResult);
+			SessionManager.setSessionResultValue(session, result);
+			System.out.println("saving");
 
-		ResultRepository.updateResult(res);
-		System.out.println("saving");
-		session.setAttribute("res", res);
-		System.out.println("ID " + result.getId());
-		System.out.println("worked");
-
+			System.out.println("ID " + newResult.getId());
+			System.out.println("worked");
+		}
+		catch (SQLException ex)
+		{
+			Logger.getLogger(ResultsController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return true;
 	}
 
-	private boolean processResultsUpdate(HttpServletRequest request, Results result, HttpSession session)
+	private Results transformRequestParametersIntoResult(HttpServletRequest request)
 	{
-		String category = request.getParameter("category");
-		String type = request.getParameter("type");
 		String difficulty = request.getParameter("difficulty");
 		String question = request.getParameter("question");
 		String correct_answer = request.getParameter("correct_answer");
 		String incorrect_answers1 = request.getParameter("incorrect_answers1");
 
-		int Id = result.getId();
-		System.out.println("in process update");
+		Results result = new Results();
+		result.setCategory(request.getParameter("category"));
+		result.setType(request.getParameter("type"));
+		result.setDifficulty(difficulty);
+		result.setQuestion(question);
+		result.setCorrect_answer(correct_answer);
+		result.setIncorrect_answers1(incorrect_answers1);
 
-		Results newResult = new Results();
-
-		newResult.setCategory(category);
-		newResult.setType(type);
-		newResult.setDifficulty(difficulty);
-		newResult.setQuestion(question);
-		newResult.setCorrect_answer(correct_answer);
-		newResult.setIncorrect_answers1(incorrect_answers1);
-
-		Results results = ResultRepository.updateResult(newResult);
-		// put it back in the sesssion
-		System.out.println("after update");
-		session.setAttribute("results", newResult);
-		return true;
+		return result;
 	}
 }
