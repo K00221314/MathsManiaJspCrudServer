@@ -45,8 +45,14 @@
                     <label>correct answer</label>
                     <input type="text" name="correct_answer" id="correct_answer" value="${results.correct_answer}"/>
                     <br>
-                    <label>incorrect answers</label>
-                    <input type="text" name="incorrect_answers1" id="incorrect_answers1" value="${results.incorrect_answers1}"/>
+                    <label>incorrect answer 1</label>
+                    <input type="text" name="incorrect_answer1" id="incorrect_answer1" value="${incorrect_answer1}"/>
+                    <br>
+                    <label>incorrect answer 2</label>
+                    <input type="text" name="incorrect_answer2" id="incorrect_answer2" value="${incorrect_answer2}"/>
+                    <br>
+                    <label>incorrect answer 3</label>
+                    <input type="text" name="incorrect_answer3" id="incorrect_answer3" value="${incorrect_answer3}"/>
                     <br>
 
 

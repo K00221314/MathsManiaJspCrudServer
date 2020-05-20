@@ -11,6 +11,9 @@ package controller;
  */
 public class WebsiteMap
 {
+
 	public final static String AddUser = "AddUser.jsp";
 	public final static String ManageResults = "manageResults.jsp";
+	public final static String DetailedResultsView = "detailedResultsView.jsp";
+
 }

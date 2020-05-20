@@ -111,7 +111,12 @@ public class ResultsController extends HttpServlet
 			Results result = ResultRepository.getResultById(resultId);
 			SessionManager.setSessionResultValue(session, result);
 			session.setAttribute("results", result);
-			gotoPage("/detailedResultsView.jsp", request, response);
+			String[] incorrectAnswers = result.getIncorrect_answers1().split(" ");
+			session.setAttribute("incorrect_answer1", incorrectAnswers[0]);
+			session.setAttribute("incorrect_answer2", incorrectAnswers[1]);
+			session.setAttribute("incorrect_answer3", incorrectAnswers[2]);
+
+			gotoPage("/" + WebsiteMap.DetailedResultsView, request, response);
 		}
 		catch (SQLException ex)
 		{
@@ -224,7 +229,12 @@ public class ResultsController extends HttpServlet
 		String difficulty = request.getParameter("difficulty");
 		String question = request.getParameter("question");
 		String correct_answer = request.getParameter("correct_answer");
-		String incorrect_answers1 = request.getParameter("incorrect_answers1");
+
+		String incorrect_answer1 = request.getParameter("incorrect_answer1");
+		String incorrect_answer2 = request.getParameter("incorrect_answer2");
+		String incorrect_answer3 = request.getParameter("incorrect_answer3");
+
+		String incorrect_answers1 = incorrect_answer1 + " " + incorrect_answer2 + " " + incorrect_answer3;
 
 		Results result = new Results();
 		result.setCategory(request.getParameter("category"));
