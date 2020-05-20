@@ -165,6 +165,7 @@ div#request {
     border: 1px solid #e0e7ec;
     font-family: verdana, arial;
     background-color: #ffffff;
+/*	padding: 10px;*/
     cellpadding: 10px;
     font-size:12px;
 }

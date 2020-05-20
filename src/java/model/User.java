@@ -185,7 +185,7 @@ public class User implements Serializable {
 
     public User Login(String username, String password) {
         System.out.println("in User login");
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         String query = "Select * from users where username = ? AND password = ?";
@@ -223,7 +223,7 @@ public class User implements Serializable {
 
     public User saveToDatabase() {
 
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
         System.out.println("in savetoDB");
         String sql = "INSERT INTO users (f_name,l_name, email, username, profile_pic, password,bio) VALUES (?,?,?,?,?,?,?)";
         String query = "SELECT LAST_INSERT_ID()";
@@ -257,7 +257,7 @@ public class User implements Serializable {
 
     public User getUserDetails(int userId) {
         User u = null;
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
         PreparedStatement ps = null;
         ResultSet resultSet = null;
 
@@ -294,7 +294,7 @@ public class User implements Serializable {
 //
 
     public User deleteDateabase(int UserID) {
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
         System.out.println("in delete DB ");
         String sql = "DELETE Users FROM users WHERE user_id = ? ";
 
@@ -313,7 +313,7 @@ public class User implements Serializable {
     }
 
     public User updateDatabase(int userid, String fname, String lName, String email, String username, String profilePic, String password, String bio) {
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
 
         this.setfName(fname);
         this.setlName(lName);
@@ -351,7 +351,7 @@ public class User implements Serializable {
 
         ArrayList allusers = new ArrayList<>();
 
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
         PreparedStatement ps = null;
         ResultSet resultSet = null;
 
@@ -385,7 +385,7 @@ public class User implements Serializable {
 
     //    public User updateUser() {
 //
-//        Connection connection = DatabaseUtilityClass.getConnection();
+//        Connection connection = DatabaseAgent.getConnection();
 //         
 //        String sql = "UPDATE user SET username = ?, password = ?, "
 //                + "email = ?, phone = ?, course = ? WHERE userid = ?";
@@ -410,7 +410,7 @@ public class User implements Serializable {
     
 	
 //	public static String addQuestion(String question,String a,String b,String c,String d,String set,String answer){
-//		String query="insert into "+DatabaseUtilityClass.QUESTION_TABLE+" ("+DatabaseUtilityClass.TEXT_COL+","+DatabaseUtilityClass.SET_COL+","+DatabaseUtilityClass.ANSWER_COL+") values(?,?,?)";
+//		String query="insert into "+DatabaseAgent.QUESTION_TABLE+" ("+DatabaseAgent.TEXT_COL+","+DatabaseAgent.SET_COL+","+DatabaseAgent.ANSWER_COL+") values(?,?,?)";
 //		int id=0;
 //		
 //		try{
@@ -427,25 +427,25 @@ public class User implements Serializable {
 //				id=rs.getInt(1);
 //			}
 //			
-//			query="insert into "+DatabaseUtilityClass.CHOICE_TABLE+" ("+DatabaseUtilityClass.TEXT_COL+","+DatabaseUtilityClass.QUESTION_ID_COL+") values(?,?)";
+//			query="insert into "+DatabaseAgent.CHOICE_TABLE+" ("+DatabaseAgent.TEXT_COL+","+DatabaseAgent.QUESTION_ID_COL+") values(?,?)";
 //			ps=con.prepareStatement(query);
 //			ps.setString(1,a);
 //			ps.setInt(2,id);
 //			ps.executeUpdate();
 //			
-//			query="insert into "+DatabaseUtilityClass.CHOICE_TABLE+" ("+DatabaseUtilityClass.TEXT_COL+","+DatabaseUtilityClass.QUESTION_ID_COL+") values(?,?)";
+//			query="insert into "+DatabaseAgent.CHOICE_TABLE+" ("+DatabaseAgent.TEXT_COL+","+DatabaseAgent.QUESTION_ID_COL+") values(?,?)";
 //			ps=con.prepareStatement(query);
 //			ps.setString(1,b);
 //			ps.setInt(2,id);
 //			ps.executeUpdate();
 //
-//			query="insert into "+DatabaseUtilityClass.CHOICE_TABLE+" ("+DatabaseUtilityClass.TEXT_COL+","+DatabaseUtilityClass.QUESTION_ID_COL+") values(?,?)";
+//			query="insert into "+DatabaseAgent.CHOICE_TABLE+" ("+DatabaseAgent.TEXT_COL+","+DatabaseAgent.QUESTION_ID_COL+") values(?,?)";
 //			ps=con.prepareStatement(query);
 //			ps.setString(1,c);
 //			ps.setInt(2,id);
 //			ps.executeUpdate();
 //
-//			query="insert into "+DatabaseUtilityClass.CHOICE_TABLE+" ("+DatabaseUtilityClass.TEXT_COL+","+DatabaseUtilityClass.QUESTION_ID_COL+") values(?,?)";
+//			query="insert into "+DatabaseAgent.CHOICE_TABLE+" ("+DatabaseAgent.TEXT_COL+","+DatabaseAgent.QUESTION_ID_COL+") values(?,?)";
 //			ps=con.prepareStatement(query);
 //			ps.setString(1,d);
 //			ps.setInt(2,id);
@@ -460,12 +460,12 @@ public class User implements Serializable {
 //	}
 //	
 //	public static JSONArray getQuestions(String set){
-//		String query="select * from "+DatabaseUtilityClass.QUESTION_TABLE+" where "+DatabaseUtilityClass.SET_COL+"=?";
+//		String query="select * from "+DatabaseAgent.QUESTION_TABLE+" where "+DatabaseAgent.SET_COL+"=?";
 //		JSONArray array=new JSONArray();
 //		JSONObject obj;
 //		
 //		try{
-//			Connection con=DatabaseUtilityClass.getConnection();
+//			Connection con=DatabaseAgent.getConnection();
 //			PreparedStatement ps=con.prepareStatement(query);
 //			ps.setString(1,set);
 //			
@@ -474,26 +474,26 @@ public class User implements Serializable {
 //			
 //			while(rs.next()){
 //				obj=new JSONObject();
-//				obj.put("id", rs.getString(DatabaseUtilityClass.ID_COL));
-//				obj.put("question", rs.getString(DatabaseUtilityClass.TEXT_COL));
-//				obj.put("answer", rs.getString(DatabaseUtilityClass.ANSWER_COL));
+//				obj.put("id", rs.getString(DatabaseAgent.ID_COL));
+//				obj.put("question", rs.getString(DatabaseAgent.TEXT_COL));
+//				obj.put("answer", rs.getString(DatabaseAgent.ANSWER_COL));
 //				
-//				query="select * from "+DatabaseUtilityClass.CHOICE_TABLE+" where "+DatabaseUtilityClass.QUESTION_ID_COL+"=?";
+//				query="select * from "+DatabaseAgent.CHOICE_TABLE+" where "+DatabaseAgent.QUESTION_ID_COL+"=?";
 //				ps=con.prepareStatement(query);
-//				ps.setString(1,rs.getString(DatabaseUtilityClass.ID_COL));
+//				ps.setString(1,rs.getString(DatabaseAgent.ID_COL));
 //				rs1=ps.executeQuery();
 //				
 //				rs1.absolute(1);
-//				obj.put("a", rs1.getString(DatabaseUtilityClass.TEXT_COL));
+//				obj.put("a", rs1.getString(DatabaseAgent.TEXT_COL));
 //				
 //				rs1.absolute(2);
-//				obj.put("b", rs1.getString(DatabaseUtilityClass.TEXT_COL));
+//				obj.put("b", rs1.getString(DatabaseAgent.TEXT_COL));
 //				
 //				rs1.absolute(3);
-//				obj.put("c", rs1.getString(DatabaseUtilityClass.TEXT_COL));
+//				obj.put("c", rs1.getString(DatabaseAgent.TEXT_COL));
 //				
 //				rs1.absolute(4);
-//				obj.put("d", rs1.getString(DatabaseUtilityClass.TEXT_COL));
+//				obj.put("d", rs1.getString(DatabaseAgent.TEXT_COL));
 //				
 //				array.add(obj);
 //			}
@@ -511,33 +511,33 @@ public class User implements Serializable {
 //	}
 //	
 //	public static JSONArray getResult(){
-//		String query="select * from "+DatabaseUtilityClass.USER_TABLE;
+//		String query="select * from "+DatabaseAgent.USER_TABLE;
 //		JSONArray array= new JSONArray();
 //		JSONObject obj;
 //		
 //		try{
-//			Connection con=DatabaseUtilityClass.getConnection();
+//			Connection con=DatabaseAgent.getConnection();
 //			PreparedStatement ps=con.prepareStatement(query);
 //			
 //			ResultSet rs=ps.executeQuery();
 //			ResultSet rs1=null;
-//			query="select * from "+DatabaseUtilityClass.RESULT_TABLE+" where "+DatabaseUtilityClass.USER_ID_COL+"=?";
+//			query="select * from "+DatabaseAgent.RESULT_TABLE+" where "+DatabaseAgent.USER_ID_COL+"=?";
 //			
 //			while(rs.next()){
 //				ps=con.prepareStatement(query);
-//				ps.setString(1,rs.getString(DatabaseUtilityClass.ID_COL));
+//				ps.setString(1,rs.getString(DatabaseAgent.ID_COL));
 //				rs1=ps.executeQuery();
 //				int points=0;
 //				
 //				while(rs1.next()){
-//					if(checkAnswer(rs1.getString(DatabaseUtilityClass.QUESTION_ID_COL), rs1.getString(DatabaseUtilityClass.ANSWER_COL))){
+//					if(checkAnswer(rs1.getString(DatabaseAgent.QUESTION_ID_COL), rs1.getString(DatabaseAgent.ANSWER_COL))){
 //						points++;
 //					}
 //				}
 //				
 //				obj=new JSONObject();
-//				obj.put("name", rs.getString(DatabaseUtilityClass.NAME_COL));
-//				obj.put("email", rs.getString(DatabaseUtilityClass.EMAIL_COL));
+//				obj.put("name", rs.getString(DatabaseAgent.NAME_COL));
+//				obj.put("email", rs.getString(DatabaseAgent.EMAIL_COL));
 //				obj.put("points", points);
 //				array.add(obj);
 //			}
@@ -590,17 +590,17 @@ public class User implements Serializable {
 //	}
 //	
 //	public static boolean checkAnswer(String id,String answer){
-//		String query="select * from "+DatabaseUtilityClass.QUESTION_TABLE+" where "+DatabaseUtilityClass.ID_COL+"=?";
+//		String query="select * from "+DatabaseAgent.QUESTION_TABLE+" where "+DatabaseAgent.ID_COL+"=?";
 //		
 //		try{
-//			Connection con=DatabaseUtilityClass.getConnection();
+//			Connection con=DatabaseAgent.getConnection();
 //			PreparedStatement ps=con.prepareStatement(query);
 //			ps.setString(1,id);
 //			
 //			ResultSet rs=ps.executeQuery();
 //			
 //			if(rs.next()){
-//				if(rs.getString(DatabaseUtilityClass.ANSWER_COL).equals(answer)){
+//				if(rs.getString(DatabaseAgent.ANSWER_COL).equals(answer)){
 //					return true;
 //				}
 //			}
@@ -616,11 +616,11 @@ public class User implements Serializable {
 //	}
 //	
 //	public static JSONObject getQuestion(String id){
-//		String query="select * from "+DatabaseUtilityClass.QUESTION_TABLE+" where "+DatabaseUtilityClass.ID_COL+"=?";
+//		String query="select * from "+DatabaseAgent.QUESTION_TABLE+" where "+DatabaseAgent.ID_COL+"=?";
 //		JSONObject obj=null;
 //		
 //		try{
-//			Connection con=DatabaseUtilityClass.getConnection();
+//			Connection con=DatabaseAgent.getConnection();
 //			PreparedStatement ps=con.prepareStatement(query);
 //			ps.setString(1,id);
 //			
@@ -629,27 +629,27 @@ public class User implements Serializable {
 //			
 //			if(rs.next()){
 //				obj=new JSONObject();
-//				obj.put("id", rs.getString(DatabaseUtilityClass.ID_COL));
-//				obj.put("question", rs.getString(DatabaseUtilityClass.TEXT_COL));
-//				obj.put("answer", rs.getString(DatabaseUtilityClass.ANSWER_COL));
-//				obj.put("set", rs.getString(DatabaseUtilityClass.SET_COL));
+//				obj.put("id", rs.getString(DatabaseAgent.ID_COL));
+//				obj.put("question", rs.getString(DatabaseAgent.TEXT_COL));
+//				obj.put("answer", rs.getString(DatabaseAgent.ANSWER_COL));
+//				obj.put("set", rs.getString(DatabaseAgent.SET_COL));
 //				
-//				query="select * from "+DatabaseUtilityClass.CHOICE_TABLE+" where "+DatabaseUtilityClass.QUESTION_ID_COL+"=?";
+//				query="select * from "+DatabaseAgent.CHOICE_TABLE+" where "+DatabaseAgent.QUESTION_ID_COL+"=?";
 //				ps=con.prepareStatement(query);
-//				ps.setString(1,rs.getString(DatabaseUtilityClass.ID_COL));
+//				ps.setString(1,rs.getString(DatabaseAgent.ID_COL));
 //				rs1=ps.executeQuery();
 //				
 //				rs1.absolute(1);
-//				obj.put("a", rs1.getString(DatabaseUtilityClass.TEXT_COL));
+//				obj.put("a", rs1.getString(DatabaseAgent.TEXT_COL));
 //				
 //				rs1.absolute(2);
-//				obj.put("b", rs1.getString(DatabaseUtilityClass.TEXT_COL));
+//				obj.put("b", rs1.getString(DatabaseAgent.TEXT_COL));
 //				
 //				rs1.absolute(3);
-//				obj.put("c", rs1.getString(DatabaseUtilityClass.TEXT_COL));
+//				obj.put("c", rs1.getString(DatabaseAgent.TEXT_COL));
 //				
 //				rs1.absolute(4);
-//				obj.put("d", rs1.getString(DatabaseUtilityClass.TEXT_COL));
+//				obj.put("d", rs1.getString(DatabaseAgent.TEXT_COL));
 //				
 //			}
 //			
@@ -666,17 +666,17 @@ public class User implements Serializable {
 //	}
 //
 //	public static String deleteQuestion(String id){
-//		String query="delete from "+DatabaseUtilityClass.QUESTION_TABLE+" where "+DatabaseUtilityClass.ID_COL+"=?";
+//		String query="delete from "+DatabaseAgent.QUESTION_TABLE+" where "+DatabaseAgent.ID_COL+"=?";
 //		int result1=0,result2=0;
 //		
 //		try{
-//			Connection con=DatabaseUtilityClass.getConnection();
+//			Connection con=DatabaseAgent.getConnection();
 //			PreparedStatement ps=con.prepareStatement(query);
 //			ps.setString(1, id);
 //			
 //			result1=ps.executeUpdate();
 //			
-//			query="delete from "+DatabaseUtilityClass.CHOICE_TABLE+" where "+DatabaseUtilityClass.QUESTION_ID_COL+"=?";
+//			query="delete from "+DatabaseAgent.CHOICE_TABLE+" where "+DatabaseAgent.QUESTION_ID_COL+"=?";
 //			ps=con.prepareStatement(query);
 //			ps.setString(1,id);
 //			result2=ps.executeUpdate();

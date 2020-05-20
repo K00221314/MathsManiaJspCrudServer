@@ -76,8 +76,7 @@ public class AdminController extends HttpServlet
 				Admin user2 = new Admin();
 				boolean worked = user2.deleteUser(nid);
 
-				ArrayList<Admin> allusers2 = new ArrayList<>();
-				allusers2 = user2.getAllUsers();
+				ArrayList<Admin> allusers2  =user2.getAllUsers();
 
 				session.setAttribute("allusers", allusers2);
 				gotoPage("/manageUsers.jsp", request, response);

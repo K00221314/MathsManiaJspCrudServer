@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@page import="model.Admin"%>
-<%@page import="model.Results"%>
+<%@page import="entities.Results"%>
 
 <!DOCTYPE html>
 <html lang="en">

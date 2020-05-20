@@ -73,7 +73,7 @@ public class Admin implements Serializable {
 
     public Admin Login(String username, String password) {
 
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         String query = "Select * from users where username = ? AND password = ? AND AccountType='Admin' ";
@@ -110,7 +110,7 @@ public class Admin implements Serializable {
 
     public Admin saveToDatabase() {
 
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
         System.out.println("in S DB");
         String sql = "INSERT INTO users (f_name,l_name,email,username,profile_pic,password,bio) VALUES (?,?,?,?,?,?,?);";
         String query = "SELECT LAST_INSERT_ID()";
@@ -140,7 +140,7 @@ public class Admin implements Serializable {
 
     public Admin update() {
 
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
 
         String sql = "UPDATE users SET f_name = ?,l_name = ?,email = ?, username = ?,profile_pic = ?, password = ?,bio = ? WHERE user_id=?;";
 
@@ -163,7 +163,7 @@ public class Admin implements Serializable {
     }
 
     public Admin delete(int userid) {
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
 
         String sql = "DELETE FROM users WHERE user.userid=?;";
         try {
@@ -183,7 +183,7 @@ public class Admin implements Serializable {
 //    }
     public Admin getUserDetails(int user_id) {
         Admin u = null;
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
         PreparedStatement ps = null;
         ResultSet resultSet = null;
 
@@ -220,7 +220,7 @@ public class Admin implements Serializable {
 
         ArrayList allusers = new ArrayList<>();
 
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
         PreparedStatement ps = null;
         ResultSet resultSet = null;
 
@@ -251,7 +251,7 @@ public class Admin implements Serializable {
     }
 
     public Admin updateUser() {
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
         String sql = "UPDATE users SET f_name = ?,l_name = ?,email = ?, username = ?,profile_pic = ?, password = ?,bio = ? WHERE user_id=?;";
 
         try {
@@ -279,7 +279,7 @@ public class Admin implements Serializable {
     public boolean deleteUser(int user_id) {
 
         Admin a = null;
-        Connection connection = DatabaseUtilityClass.getConnection();
+        Connection connection = DatabaseAgent.getConnection();
         PreparedStatement ps = null;
         ResultSet resultSet = null;
 
@@ -420,7 +420,7 @@ public class Admin implements Serializable {
 	public Admin updateDatabase(int UserID, String f_name, String l_name, String email, String username, String profile_pic, String password, String bio)
 	{
 		
-		 Connection connection = DatabaseUtilityClass.getConnection();
+		 Connection connection = DatabaseAgent.getConnection();
 
         this.setF_name(f_name);
         this.setL_name(l_name);
