@@ -28,7 +28,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="adminHome.jsp">Home</a>
                         </li>
                         <li class="nav-item">
@@ -40,7 +40,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="profile_Admin.jsp">Profile</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="AdminControllPage.jsp">Edit</a>
                         </li>
                         <li class="nav-item">
@@ -67,34 +67,48 @@
         <div class="container-fluid padding">
             <div class="row welcome text-center">
                 <div class="col-12">
-                    <h1 class="display-4">Math Mania</h1>
+                    <h1 class="display-4">Maths Mania</h1>
                 </div>
                 <hr>
                 <div class="col-12">
-                    <p class="lead">A Virtual reality application for primary school children.</p>
+                    <p class="lead">Admin Area.</p>
                 </div>
 
             </div>
         </div>
 
-        <div class="main">
-
-
-
-            <div class="panelMenu">
-                <div class="adminMenu">
-
-
-                    <a href="addQuestion.jsp" class="btn btn-primary">Add Questions</a>
-                    <a href="AdminController?home=getUserView" class="btn btn-primary">Manage Users</a>
-                    <a href="ResultsController?home=getResultsView" class="btn btn-primary">Manage Questions</a>
-
-
+      
+		
+		  <!--- Three Column Section -->
+        <div class="container-fluid padding">
+            <div class="row text-center padding">
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                 
+                    <h3>Add Questions</h3>
+                    <p>Fill out the information to add a question to the quiz.
+                    </p>
+					<a href="addQuestion.jsp" class="btn btn-primary">Add Questions</a>
+					
                 </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    
+                    <h3>Manage Users</h3>
+                    <p>View all users and edit or delete users.
+                    </p>
+					<a href="AdminController?home=getUserView" class="btn btn-primary">Manage Users</a>
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    
+                    <h3>Manage Questions</h3>
+                    <p>Modify of delete quiz questions. </p>
+					<a href="ResultsController?home=getResultsView" class="btn btn-primary">Manage Questions</a>
+                </div>
+
             </div>
-
+            <hr class="my-4">
         </div>
-
 
 
 

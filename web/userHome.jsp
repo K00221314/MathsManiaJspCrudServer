@@ -35,7 +35,7 @@
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="quiz/quiz.html">Quiz</a>
+                            <a class="nav-link" href="QuizMathsMania/MathsManiaQuiz.html">Quiz</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="gallery_User.jsp">Gallery</a>
@@ -72,24 +72,35 @@
             <div class="carousel-inner">
 
                 <div class="carousel-item active">
-                    <img src="img/test.png">
+                    <img src="img/menuscene3.PNG">
                     <div class="carousel-caption">
                         <h1 class="display-2">Welcome</h1>
-                        <h3>To Math Mania</h3>
-                        <button type="button" class="btn btn-primary btn-lrg">Download</button>
+                        <h3>To Maths Mania</h3>
+                        <button type="button" class="btn btn-primary btn-lrg" hr>Download</button>
 
                     </div>
                 </div>
 
                 <div class="carousel-item">
-                    <img src="img/test.png">
+                    <img src="img/division.PNG">
                 </div>
 
                 <div class="carousel-item">
-                    <img src="img/test.png">
+                    <img src="img/division3.PNG">
+                </div>
+				
+				<div class="carousel-item">
+                    <img src="img/division2.PNG">
+                </div>
+				
+				<div class="carousel-item">
+                    <img src="img/multi1.PNG">
+                </div>
+				
+				<div class="carousel-item">
+                    <img src="img/multi4.PNG">
                 </div>
             </div>
-
 
 
 
@@ -144,14 +155,14 @@
             <div class="row padding">
                 <div class="col-lg-6">
 
-                    <h2>What is Virtual Reality ?</h2>
+                     <h2>What is Virtual Reality ?</h2>
                     <br>
                     <p>Virtual reality (VR) is a simulated experience that can be similar to or completely different from the real world.</p>
                     <p>Applications of virtual reality can include entertainment (i.e. video games) and educational purposes (i.e. medical or military training). Other, distinct types of VR style technology include augmented reality and mixed reality.</p>
                     <p>Currently standard virtual reality systems use either virtual reality headsets or multi-projected environments to generate realistic images, sounds and other sensations that simulate a user's physical presence in a virtual environment. A person using virtual reality equipment is able to look around the artificial world, move around in it, and interact with virtual features or items.</p>
                     <p>The effect is commonly created by VR headsets consisting of a head-mounted display with a small screen in front of the eyes, but can also be created through specially designed rooms with multiple large screens.</p>
                     <p>  Virtual reality typically incorporates auditory and video feedback, but may also allow other types of sensory and force feedback through haptic technology.</p>
-                    <p>Math Mania has been designed to use the HTC Vive headset and takes full advantage of the headsets capabilities to give the user a fun and immersive experience</p>
+                    <p>Maths Mania has been designed to use the HTC Vive headset and takes full advantage of the headsets capabilities to give the user a fun and immersive experience</p>
 
                     <br>
 
@@ -176,18 +187,15 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <h2>Learning through educational games</h2>
+                     <h2>Learning through educational games</h2>
                     <br>
                     <p>The goal of this interactive VR game is to promote the learning of Maths. Educational games refer to
                         “complex systems that include pre-defined roles of participants and strictly defined objectives
-                        through interactive activities with goals and rewards” (Research Gate.)
-                        As it is a “educational game” this has many benefits to achieve the goal of educating children with
+                        through interactive activities with goals and rewards”.
+                        As Maths Mania is a “educational game” this has many benefits to achieve the goal of educating children with
                         maths.</p>
-                    <p>Currently gaming is one of the biggest industries in the world, according to the latest Global Games
-                        Market Report by Newzoo (2018), video games generate $137.9 billion per year
-                        (Lpesports.com.2019).</p>
-                    <p>Research shows that the average 8 to 12-year-old plays 13 hours of video games a week (Martin and
-                        Oppenhiem – 2007). This shows that students are naturally motivated to play games and if
+                    <p>Currently gaming is one of the biggest industries in the world,and video games generate $137.9 billion per year.</p>
+                    <p>Research shows that the average 8 to 12-year-old plays 13 hours of video games a week. This shows that students are naturally motivated to play games and if
                         education can be adapted through such a highly motivational media, it is a win-win for both students
                         and teachers.</p>
                     <p>There are many benefits to game based learning, it can increase a child’s memory capacity as games
@@ -195,9 +203,8 @@
                         playing games allows children to get used to how a computer works and teaches them the basics
                         such as creating an account for a website etc, it can also help with fast strategic thinking and
                         problem solving as with a maths game it will require users to think quickly and logically.
-                        (TeachThought)</p>
+                        </p>
                     <br>
-
                 </div>
 
 
@@ -212,16 +219,14 @@
 
 
 
-        <!--- Connect -->
+       <!--- Connect -->
         <div class="container-fluid padding">
             <div class="row text-center padding">
                 <div class="col-12">
-                    <h2>Connect</h2>
+                    <h2>Download the VR game</h2>
                 </div>
                 <div class="col-12 social padding">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                     <button type="button" class="btn btn-primary btn-lrg " hr>Download</button>
                 </div>
             </div>
         </div>

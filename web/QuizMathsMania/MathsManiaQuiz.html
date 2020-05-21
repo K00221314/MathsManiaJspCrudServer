@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Maths Mania Quiz</title>
+		<link rel="shortcut icon" href="TemplateData/favicon.ico">
+		<link rel="stylesheet" href="TemplateData/style.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+		<link href="../css/styles.css" rel="stylesheet">
+		<script src="TemplateData/UnityProgress.js"></script>
+		<script src="Build/UnityLoader.js"></script>
+		<script>
+			var unityInstance = UnityLoader.instantiate("unityContainer", "Build/QuizMathsMania.json", {onProgress: UnityProgress});
+		</script>
+	</head>
+	<body>
+
+		<!-- Navigation -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+            <div class="container-fluid">
+                <a class = "navbar-brand" href="userHome.jsp">
+					<img alt="Logo" src="../img/logonew2.png"></a>
+                <button class="navbar-toggler" type ="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../userHome.jsp">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../about_User.jsp">About</a>
+                        </li>
+
+						<li class="nav-item active">
+                            <a class="nav-link" href="MathsManiaQuiz">Quiz</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../gallery_User.jsp">Gallery</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="../profile.jsp">Profile</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <form action="UserController" class="login-form">  
+                                <input type="submit" name="menu" value="Logout" class="btn btn-primary btn-lrg" />
+
+                            </form>
+
+                        </li>
+
+                    </ul>
+
+
+                </div>
+            </div>
+
+
+        </nav>
+
+		<div class="webgl-content">
+			<div id="unityContainer" style="width: 960px; height: 600px"></div>
+			<div class="footer">
+				<div class="webgl-logo"></div>
+				<div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+				<div class="title">Maths Mania Quiz</div>
+			</div>
+		</div>
+	</body>
+</html>

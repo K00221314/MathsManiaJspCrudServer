@@ -37,7 +37,7 @@
                 <a class="nav-link" href="about_User.jsp">About</a>
             </li>
             <li class="nav-item">
-                            <a class="nav-link" href="quiz/quiz.html">Quiz</a>
+                            <a class="nav-link" href="QuizMathsMania/MathsManiaQuiz.html">Quiz</a>
                         </li>
             <li class="nav-item">
                 <a class="nav-link" href="gallery_User.jsp">Gallery</a>

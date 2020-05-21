@@ -284,15 +284,13 @@ public class Admin implements Serializable {
         ResultSet resultSet = null;
 
         String sql = "DELETE Users FROM users WHERE user_id = ? ";
-        String sql2 = "Delete uploads From uploads Where user_id =?";
+       
         try {
             ps = connection.prepareStatement(sql);
-            PreparedStatement ps2 = connection.prepareStatement(sql2);
+           
 
             ps.setInt(1, user_id);
-            ps2.setInt(1, this.getUser_id());
-
-            ps2.executeUpdate();
+            
             int i = ps.executeUpdate();
             if (i == 0) {
                 return false;

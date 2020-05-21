@@ -40,7 +40,7 @@
                         </li>
                         
                          <li class="nav-item">
-                            <a class="nav-link" href="quiz/quiz.html">Quiz</a>
+                            <a class="nav-link" href="QuizMathsMania/MathsManiaQuiz.html">Quiz</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="gallery.jsp">Gallery</a>
@@ -68,30 +68,90 @@
 
         <section>
 
-            <div class="row justify-content-center">
+           <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="row">
-                        <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                            <img src="https://unsplash.it/600.jpg?image=251" class="img-fluid">
+                        <a href="img/menuscene.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/menuscene.PNG" class="img-fluid">
                         </a>
-                        <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                            <img src="https://unsplash.it/600.jpg?image=252" class="img-fluid">
+                        <a href="img/menuscene2.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/menuscene2.PNG" class="img-fluid">
                         </a>
-                        <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                            <img src="https://unsplash.it/600.jpg?image=253" class="img-fluid">
+                        <a href="img/menuscene3.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/menuscene3.PNG" class="img-fluid">
                         </a>
                     </div>
                     <div class="row">
-                        <a href="https://unsplash.it/1200/768.jpg?image=254" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                            <img src="https://unsplash.it/600.jpg?image=254" class="img-fluid">
+                        <a href="img/division.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/division.PNG" class="img-fluid">
                         </a>
-                        <a href="https://unsplash.it/1200/768.jpg?image=255" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                            <img src="https://unsplash.it/600.jpg?image=255" class="img-fluid">
+                        <a href="img/division2.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/division2.PNG" class="img-fluid">
                         </a>
-                        <a href="https://unsplash.it/1200/768.jpg?image=256" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                            <img src="https://unsplash.it/600.jpg?image=256" class="img-fluid">
+                        <a href="img/division3.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/division3.PNG" class="img-fluid">
                         </a>
                     </div>
+					
+					<div class="row">
+                        <a href="img/division4.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/division4.PNG" class="img-fluid">
+                        </a>
+                        <a href="img/division5.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/division5.PNG" class="img-fluid">
+                        </a>
+                        <a href="img/division6.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/division6.PNG" class="img-fluid">
+                        </a>
+                    </div>
+					
+					<div class="row">
+                        <a href="img/division7.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/division7.PNG" class="img-fluid">
+                        </a>
+                        <a href="img/Robot.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/Robot.PNG" class="img-fluid">
+                        </a>
+                        <a href="img/division9.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/division9.PNG" class="img-fluid">
+                        </a>
+                    </div>
+					
+					<div class="row">
+                        <a href="img/division010.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/division010.PNG" class="img-fluid">
+                        </a>
+                        <a href="img/multi1.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/multi1.PNG" class="img-fluid">
+                        </a>
+                        <a href="img/multi2.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/multi2.PNG" class="img-fluid">
+                        </a>
+                    </div>
+					
+					<div class="row">
+                        <a href="img/multi3.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/multi3.PNG" class="img-fluid">
+                        </a>
+                        <a href="img/multi4.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/multi4.PNG" class="img-fluid">
+                        </a>
+                        <a href="img/multi5.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/multi5.PNG" class="img-fluid">
+                        </a>
+                    </div>
+					
+					<div class="row">
+                        <a href="img/multi6.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/multi6.PNG" class="img-fluid">
+                        </a>
+                        <a href="img/multi7.PNG" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="img/multi7.PNG" class="img-fluid">
+                        </a>
+                       
+                    </div>
+					
+					
                 </div>
             </div>
 

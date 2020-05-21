@@ -37,7 +37,7 @@
                             <a class="nav-link" href="about_User.jsp">About</a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link" href="quiz/quiz.html">Quiz</a>
+                            <a class="nav-link" href="QuizMathsMania/MathsManiaQuiz.html">Quiz</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="gallery_User.jsp">Gallery</a>
@@ -70,24 +70,36 @@
                 <li data-target="#slides" data-slide-to="1"></li>
                 <li data-target="#slides" data-slide-to="2"></li>
             </ul>
-            <div class="carousel-inner">
+             <div class="carousel-inner">
 
                 <div class="carousel-item active">
-                    <img src="img/test.png">
+                    <img src="img/menuscene3.PNG">
                     <div class="carousel-caption">
                         <h1 class="display-2">Welcome</h1>
-                        <h3>To Math Mania</h3>
-                        <button type="button" class="btn btn-primary btn-lrg">Download</button>
+                        <h3>To Maths Mania</h3>
+                        <button type="button" class="btn btn-primary btn-lrg" hr>Download</button>
 
                     </div>
                 </div>
 
                 <div class="carousel-item">
-                    <img src="img/test.png">
+                    <img src="img/division.PNG">
                 </div>
 
                 <div class="carousel-item">
-                    <img src="img/test.png">
+                    <img src="img/division3.PNG">
+                </div>
+				
+				<div class="carousel-item">
+                    <img src="img/division2.PNG">
+                </div>
+				
+				<div class="carousel-item">
+                    <img src="img/multi1.PNG">
+                </div>
+				
+				<div class="carousel-item">
+                    <img src="img/multi4.PNG">
                 </div>
             </div>
 
@@ -121,7 +133,7 @@
 
 
 
-        <!--- Two Column Section -->
+       <!--- Two Column Section -->
         <div class="container-fluid padding">
             <div class="row padding">
                 <div class="col-lg-6">
@@ -132,6 +144,7 @@
                     <p>The users are guided through the level by a character named Jammo who is a friendly robot who's aim is to guide the user through the level. </p>
 
                     <a href="gallery.jsp" class="btn btn-primary">See Jammo</a>
+                   
                 </div>
                 <div class="col-lg-6">
                     <img src="img/123.PNG" class="img-fluid">
@@ -142,14 +155,14 @@
 
             <div class="row padding">
                 <div class="col-lg-6">
-                    <img src="img/22.PNG" class="img-fluid">
+                    <img src="img/multi4.PNG" class="img-fluid">
                 </div>
 
                 <div class="col-lg-6">
                     <h2>Second Level</h2>
                     <p>The second level was inspired by the beatsaber game where the users objective is to hit the correct cube to move onto the next question.</p>
                     <p>The user is displayed with a multiplication question and has the option of 4 different answers. They must hit the correct answer to move onto the next question and earn a score which is displayed at the end of the game</p>
-
+					<p> The user is can pick up two blasters using the controllers. When the player squeezes the trigger the blaster will shoot an apple.</p>
                     <br>
 
                 </div>
@@ -169,7 +182,7 @@
 
                 </div>
                 <div class="col-lg-6">
-                    <img src="img/123.PNG" class="img-fluid">
+                    <img src="img/quiz1.PNG" class="img-fluid">
                 </div>
 
 
@@ -184,7 +197,7 @@
             <div class="container-fluid padding">
                 <div class="row text-center">
                     <div class="col-md-4">
-                        <!--<img src="img/w3newbie.png">-->
+                       
                         <img src="img/logonew3.png">
 
 
