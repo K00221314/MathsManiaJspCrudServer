@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.DatabaseAgent;
 import model.User;
+import support.repository.Support;
 
 public class UserRepository implements Serializable
 {
@@ -126,39 +127,30 @@ public class UserRepository implements Serializable
 		}
 	}
 
-	public UserRepository insertUser()
+	public int insertUser(User user) throws SQLException, Exception
 	{
-
 		Connection connection = DatabaseAgent.getConnection();
-		System.out.println("in S DB");
-		String sql = "INSERT INTO users (f_name,l_name,email,username,profile_pic,password,bio) VALUES (?,?,?,?,?,?,?);";
-		String query = "SELECT LAST_INSERT_ID()";
+		String insertSql = "INSERT INTO users (f_name,l_name,email,username,profile_pic,password,bio) VALUES (?,?,?,?,?,?,?);";
 		try
 		{
-			PreparedStatement ps = connection.prepareStatement(sql);
-			PreparedStatement ps2 = connection.prepareStatement(query);
-			ps.setString(1, this.getF_name());
-			ps.setString(2, this.getL_name());
-			ps.setString(3, this.getEmail());
-			ps.setString(4, this.getUsername());
-			ps.setString(5, this.getProfile_pic());
-			ps.setString(6, this.getPassword());
-			ps.setString(7, this.getBio());
-			System.out.println("in S DB Q");
-			ps.executeUpdate();
-			ResultSet rs = ps2.executeQuery();
-			while (rs.next())
-			{
-				this.setUser_id(rs.getInt(1));
-			}
+			PreparedStatement preparedStatement = connection.prepareStatement(insertSql);
+			preparedStatement.setString(1, user.getfName());
+			preparedStatement.setString(2, user.getlName());
+			preparedStatement.setString(3, user.getEmail());
+			preparedStatement.setString(4, user.getUsername());
+			preparedStatement.setString(5, user.getProfilePic());
+			preparedStatement.setString(6, user.getPassword());
+			preparedStatement.setString(7, user.getBio());
+			preparedStatement.executeUpdate();
 
+			int id = Support.getLastInsertedIdOnConnection(connection);
+			user.setUserid(id);
+			return id;
+		}
+		finally
+		{
 			connection.close();
 		}
-		catch (SQLException ex)
-		{
-			System.out.println(ex);
-		}
-		return this;
 	}
 
 	public void updateUser(User user) throws SQLException

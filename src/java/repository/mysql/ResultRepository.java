@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.DatabaseAgent;
 import entities.Results;
+import support.repository.Support;
 
 /**
  *
@@ -128,7 +129,7 @@ public class ResultRepository
 			preparedStatement.setString(6, result.getIncorrect_answers1());
 			preparedStatement.executeUpdate();
 
-			int id = getLastInsertedIdOnConnection(connection);
+			int id = Support.getLastInsertedIdOnConnection(connection);
 			result.setId(id);
 			return id;
 		}
@@ -184,18 +185,4 @@ public class ResultRepository
 		return result;
 	}
 
-	private static int getLastInsertedIdOnConnection(Connection connection) throws Exception, SQLException
-	{
-		String sqlQuery = "SELECT LAST_INSERT_ID()";
-		PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-		ResultSet resultSet = preparedStatement.executeQuery();
-		if (resultSet.next())
-		{
-			return resultSet.getInt(1);
-		}
-		else
-		{
-			throw new Exception("SQL failed");
-		}
-	}
 }
