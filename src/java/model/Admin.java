@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class Admin implements Serializable {
 
+
+
     private int user_id;
     private String f_name;
     private String l_name;
@@ -17,7 +19,7 @@ public class Admin implements Serializable {
     private String profile_pic;
     private String password;
     private String bio;
-    private String AccountType;
+    private String accountType;
 
     public Admin() {
     }
@@ -31,7 +33,7 @@ public class Admin implements Serializable {
         this.profile_pic = profile_pic;
         this.password = password;
         this.bio = bio;
-        this.AccountType = AccountType;
+        this.accountType = AccountType;
     }
 
     public Admin(String f_name, String l_name, String email, String username, String profile_pic, String password, String bio) {
@@ -94,7 +96,7 @@ public class Admin implements Serializable {
                 this.profile_pic = resultSet.getString("profile_pic");
                 this.password = resultSet.getString("password");
                 this.bio = resultSet.getString("bio");
-                this.AccountType = resultSet.getString("AccountType");
+				this.setAccountType(resultSet.getString("AccountType"));
 
             }
 
@@ -451,6 +453,20 @@ public class Admin implements Serializable {
         }
         return this;
 	}
+	/**
+	 * @return the accountType
+	 */
+	public String getAccountType()
+	{
+		return accountType;
+	}
 
+	/**
+	 * @param accountType the accountType to set
+	 */
+	public void setAccountType(String accountType)
+	{
+		this.accountType = accountType;
+	}
     
 }
