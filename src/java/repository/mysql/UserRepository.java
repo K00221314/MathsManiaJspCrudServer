@@ -103,35 +103,27 @@ public class UserRepository implements Serializable
 		}
 	}
 
-	public ArrayList<User> getAllUsers()
+	public ArrayList<User> getAllUsers() throws SQLException
 	{
-
-		ArrayList allusers = new ArrayList<>();
-
 		Connection connection = DatabaseAgent.getConnection();
-		PreparedStatement ps = null;
-		ResultSet resultSet = null;
-
-		String query = "Select * from users";
-
 		try
 		{
+			String query = "Select * from users";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			ResultSet resultSet = preparedStatement.executeQuery();
 
-			ps = connection.prepareStatement(query);
-			resultSet = ps.executeQuery();
+			ArrayList<User> users = new ArrayList<>();
 			while (resultSet.next())
 			{
-				User s = transformResultsetToUser(resultSet);
-				allusers.add(s);
+				User user = transformResultsetToUser(resultSet);
+				users.add(user);
 			}
+			return users;
+		}
+		finally
+		{
 			connection.close();
 		}
-		catch (SQLException ex)
-		{
-			System.out.println(ex);
-			return null;
-		}
-		return allusers;
 	}
 
 	public UserRepository insertUser()
@@ -168,7 +160,6 @@ public class UserRepository implements Serializable
 		}
 		return this;
 	}
-
 
 	public void updateUser(User user) throws SQLException
 	{
