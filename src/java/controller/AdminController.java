@@ -14,10 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Admin;
+import entities.User;
+import repository.mysql.UserRepository;
 
 public class AdminController extends HttpServlet
 {
-private final String loginSessionKey = "admin";
+
+	private final String loginSessionKey = "admin";
+	private final UserRepository userRepository = new UserRepository();
+
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
@@ -65,9 +70,9 @@ private final String loginSessionKey = "admin";
 				String snid = request.getParameter("user_id");
 				int nid = Integer.parseInt(snid);
 				Admin user2 = new Admin();
-				boolean worked = user2.deleteUser(nid);
+				boolean worked = userRepository.deleteUserById(nid);
 
-				ArrayList<Admin> allusers2  =user2.getAllUsers();
+				ArrayList<User> allusers2 = userRepository.getUsers();
 
 				session.setAttribute("allusers", allusers2);
 				gotoPage("/manageUsers.jsp", request, response);
@@ -80,7 +85,8 @@ private final String loginSessionKey = "admin";
 					String message = "invalid logon details.. try again";
 					session.setAttribute("message", message);
 					gotoPage("/adminlogin.jsp", request, response);
-				} else
+				}
+				else
 				{
 
 					gotoPage("/adminHome.jsp", request, response);
@@ -94,7 +100,7 @@ private final String loginSessionKey = "admin";
 				System.out.println("user_id" + user_id);
 
 				Admin s = new Admin();
-				s = s.getUserDetails(user_id);
+				s = userRepository.getUserById(user_id);
 
 				if (s != null)
 				{
@@ -103,12 +109,13 @@ private final String loginSessionKey = "admin";
 					System.out.println("sesion contents" + session.getAttribute("user"));
 					Admin u = new Admin();
 					System.out.println("get user details " + s.getUser_id());
-					u = u.getUserDetails(s.getUser_id());
+					u = userRepository.getUserById(s.getUser_id());
 					if (u != null)
 					{
 						System.out.println("user" + u.getUsername());
 						session.setAttribute("user", u);
-					} else
+					}
+					else
 					{
 						System.out.println("user details null");
 					}
@@ -120,13 +127,12 @@ private final String loginSessionKey = "admin";
 			case "home":
 
 				Admin users = new Admin();
-				ArrayList<Admin> allusers = new ArrayList<>();
-				allusers = users.getAllUsers();
+				ArrayList<User> allusers = new ArrayList<>();
+				allusers = userRepository.getUsers();
 				session.setAttribute("allusers", allusers);
 				gotoPage("/manageUsers.jsp", request, response);
 				System.out.println("in switch");
 				break;
-
 
 			case "Save User Details":
 				boolean worked1 = ProcessUserUpdate(request, user1, session);
@@ -137,7 +143,6 @@ private final String loginSessionKey = "admin";
 				gotoPage("/invalid.jsp", request, response);
 				break;
 
-
 		}
 	}
 
@@ -147,13 +152,14 @@ private final String loginSessionKey = "admin";
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		Admin us = new Admin(username, password);
-		us.Login(username, password);
+		userRepository.getUserByCredentials(username, password);
 		session.setAttribute("user", us);
 
 		if (us.getUser_id() != 0)
 		{
 			return true;
-		} else
+		}
+		else
 		{
 			return false;
 		}
@@ -172,8 +178,8 @@ private final String loginSessionKey = "admin";
 		String bio = request.getParameter("bio");
 
 		System.out.println(f_name);
-		Admin us = new Admin(f_name, l_name, email, username, profile_pic, password, bio);
-		us.saveToDatabase();
+		User us = new User(f_name, l_name, email, username, profile_pic, password, bio);
+		userRepository.insertUser(us);
 
 		session.setAttribute("user", us);
 		System.out.println("userid" + us.getUser_id());
@@ -245,33 +251,34 @@ private final String loginSessionKey = "admin";
 		System.out.println("f_name");
 		Admin us = new Admin(user.getUser_id(), f_name, l_name, email, username, profile_pic, password, bio);
 
-		us.updateUser();
+		userRepository.updateUser(us);
 		session.setAttribute("user", user);
 		System.out.println("userid" + user.getUser_id());
 	}
 
 	private void ProcessDelete(HttpServletRequest request, HttpSession session, Admin user)
 	{
-		Admin us = new Admin(user.getUser_id());
-		us.delete(user.getUser_id());
+		userRepository.deleteUser(user)
 		session.setAttribute("user", user);
 		System.out.println("userid" + user.getUser_id());
 	}
 
 	private boolean ProcessUserUpdate(HttpServletRequest request, Admin user, HttpSession session)
 	{
-		String f_name = request.getParameter("f_name");
-		String l_name = request.getParameter("l_name");
+		String fNname = request.getParameter("f_name");
+		String lName = request.getParameter("l_name");
 		String email = request.getParameter("email");
 		String username = request.getParameter("username");
-		String profile_pic = request.getParameter("profile_pic");
+		String profilePic = request.getParameter("profile_pic");
 		String password = request.getParameter("password");
 		String bio = request.getParameter("bio");
 
 		int UserID = user.getUser_id();
+		
+		User user1 = new User(fname, lName, email,  username,  profilePic, password,  bio) ;
 		System.out.println("in process update");
 
-		Admin u = user.updateDatabase(UserID, f_name, l_name, email, username, profile_pic, password, bio);
+		userRepository.updateUser(user1);
 
 		System.out.println("after update");
 		session.setAttribute("user", u);

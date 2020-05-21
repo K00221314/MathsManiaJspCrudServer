@@ -5,14 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import model.DatabaseAgent;
-import entities.Results;
+import entities.Result;
 import support.repository.Support;
 
-/**
- *
- * @author Rob
- */
 public class ResultRepository
 {
 
@@ -25,7 +20,7 @@ public class ResultRepository
 	 */
 	public static boolean deleteResultById(int id) throws SQLException
 	{
-		Results result = getResultById(id);
+		Result result = getResultById(id);
 		return deleteResult(result);
 	}
 
@@ -36,7 +31,7 @@ public class ResultRepository
 	 * @return
 	 * @throws SQLException
 	 */
-	public static boolean deleteResult(Results result) throws SQLException
+	public static boolean deleteResult(Result result) throws SQLException
 	{
 		Connection connection = DatabaseAgent.getConnection();
 		String sql = "DELETE FROM results WHERE results.Id=?;";
@@ -59,7 +54,7 @@ public class ResultRepository
 	 * @return
 	 * @throws java.sql.SQLException
 	 */
-	public static Results getResultById(int Id) throws SQLException
+	public static Result getResultById(int Id) throws SQLException
 	{
 		Connection connection = DatabaseAgent.getConnection();
 		try
@@ -84,7 +79,7 @@ public class ResultRepository
 		}
 	}
 
-	public static ArrayList<Results> getResults() throws SQLException
+	public static ArrayList<Result> getResults() throws SQLException
 	{
 		Connection connection = DatabaseAgent.getConnection();
 		try
@@ -114,7 +109,7 @@ public class ResultRepository
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public static int insertResult(Results result) throws SQLException, Exception
+	public static int insertResult(Result result) throws SQLException, Exception
 	{
 		Connection connection = DatabaseAgent.getConnection();
 		try
@@ -139,7 +134,7 @@ public class ResultRepository
 		}
 	}
 
-	public static void updateResult(Results result) throws SQLException
+	public static void updateResult(Result result) throws SQLException
 	{
 		Connection connection = DatabaseAgent.getConnection();
 
@@ -172,9 +167,9 @@ public class ResultRepository
 	 * @return
 	 * @throws SQLException
 	 */
-	private static Results transformResultsSetToResult(ResultSet resultSet) throws SQLException
+	private static Result transformResultsSetToResult(ResultSet resultSet) throws SQLException
 	{
-		Results result = new Results();
+		Result result = new Result();
 		result.setId(resultSet.getInt("Id"));
 		result.setCategory(resultSet.getString("category"));
 		result.setType(resultSet.getString("type"));

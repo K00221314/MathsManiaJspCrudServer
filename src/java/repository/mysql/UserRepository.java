@@ -1,16 +1,14 @@
 package repository.mysql;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import model.DatabaseAgent;
-import model.User;
+import entities.User;
 import support.repository.Support;
 
-public class UserRepository implements Serializable
+public class UserRepository
 {
 
 	/**
@@ -104,7 +102,7 @@ public class UserRepository implements Serializable
 		}
 	}
 
-	public ArrayList<User> getAllUsers() throws SQLException
+	public ArrayList<User> getUsers() throws SQLException
 	{
 		Connection connection = DatabaseAgent.getConnection();
 		try
@@ -116,8 +114,7 @@ public class UserRepository implements Serializable
 			ArrayList<User> users = new ArrayList<>();
 			while (resultSet.next())
 			{
-				User user = transformResultsetToUser(resultSet);
-				users.add(user);
+				users.add(transformResultsetToUser(resultSet));
 			}
 			return users;
 		}
@@ -130,9 +127,9 @@ public class UserRepository implements Serializable
 	public int insertUser(User user) throws SQLException, Exception
 	{
 		Connection connection = DatabaseAgent.getConnection();
-		String insertSql = "INSERT INTO users (f_name,l_name,email,username,profile_pic,password,bio) VALUES (?,?,?,?,?,?,?);";
 		try
 		{
+			String insertSql = "INSERT INTO users (f_name,l_name,email,username,profile_pic,password,bio) VALUES (?,?,?,?,?,?,?);";
 			PreparedStatement preparedStatement = connection.prepareStatement(insertSql);
 			preparedStatement.setString(1, user.getfName());
 			preparedStatement.setString(2, user.getlName());

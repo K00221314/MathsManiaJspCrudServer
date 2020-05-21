@@ -11,35 +11,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import repository.mysql.ResultRepository;
-import entities.Result;
+import repository.mysql.UserRepository;
+import entities.User;
 
-public class ResultsController extends HttpServlet
+public class UserController1 extends HttpServlet
 {
 
-//    /**
-//     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-//     * methods.
-//     *
-//     * @param request servlet request
-//     * @param response servlet response
-//     * @throws ServletException if a servlet-specific error occurs
-//     * @throws IOException if an I/O error occurs
-//     */
+	private final UserRepository userRepository = new UserRepository();
+
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		Result result = SessionManager.getSessionResultValue(session);
+		User user = SessionManager.getSessionUserValue(session);
 
 		String menu = getMenuSelction(request);
 
 		switch (menu)
 		{
-			case "deleteresults":
+			case "deleteusers":
 				processDelete(request, session, response);
 				processGetAll(session, request, response);
 				break;
-			case "getresultsview":
+			case "getusersview":
 				proeessGetOne(request, session, response);
 				break;
 			case "home":
@@ -49,12 +42,12 @@ public class ResultsController extends HttpServlet
 				processCreate(request, session);
 				processGetAll(session, request, response);
 				break;
-			case "update"://case "SaveResultDetails":
-				processUpdate(request, session, result);
+			case "update"://case "SaveUserDetails":
+				processUpdate(request, session, user);
 				processGetAll(session, request, response);
 				break;
-			case "updateresults":
-				gotoPage("/detailedResultsView.jsp", request, response);
+			case "updateusers":
+				gotoPage("/detailedUsersView.jsp", request, response);
 				break;
 			default:
 				gotoPage("/invalid.jsp", request, response);
@@ -77,49 +70,49 @@ public class ResultsController extends HttpServlet
 	{
 		try
 		{
-			ArrayList<Result> allresults = ResultRepository.getResults();
-			session.setAttribute("allresults", allresults);
-			gotoPage("/" + WebsiteMap.ManageResults, request, response);
+			ArrayList<User> users = UserRepository.getUsers();
+			session.setAttribute("users", users);
+			gotoPage("/" + WebsiteMap.ManageUsers, request, response);
 		}
 		catch (SQLException ex)
 		{
-			Logger.getLogger(ResultsController.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserController1.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
 	private void processDelete(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException, NumberFormatException, ServletException
 	{
 		String idString = request.getParameter("id");
-		int resultId = Integer.parseInt(idString);
+		int userId = Integer.parseInt(idString);
 		try
 		{
-			ResultRepository.deleteResultById(resultId);
+			UserRepository.deleteUserById(userId);
 		}
 		catch (SQLException ex)
 		{
-			Logger.getLogger(ResultsController.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserController1.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
 	private void proeessGetOne(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException, ServletException, NumberFormatException
 	{
 		String idParameterString = request.getParameter("id");
-		int resultId = Integer.parseInt(idParameterString);
+		int userId = Integer.parseInt(idParameterString);
 		try
 		{
-			Result result = ResultRepository.getResultById(resultId);
-			SessionManager.setSessionResultValue(session, result);
-			session.setAttribute("results", result);
-			String[] incorrectAnswers = result.getIncorrect_answers1().split(" ");
+			User user = UserRepository.getUserById(userId);
+			SessionManager.setSessionUserValue(session, user);
+			session.setAttribute("users", user);
+			String[] incorrectAnswers = user.getIncorrect_answers1().split(" ");
 			session.setAttribute("incorrect_answer1", incorrectAnswers[0]);
 			session.setAttribute("incorrect_answer2", incorrectAnswers[1]);
 			session.setAttribute("incorrect_answer3", incorrectAnswers[2]);
 
-			gotoPage("/" + WebsiteMap.DetailedResultsView, request, response);
+			gotoPage("/" + WebsiteMap.DetailedUsersView, request, response);
 		}
 		catch (SQLException ex)
 		{
-			Logger.getLogger(ResultsController.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserController1.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
@@ -137,21 +130,21 @@ public class ResultsController extends HttpServlet
 
 		String incorrect_answers1 = incorrect_answer1 + " " + incorrect_answer2 + " " + incorrect_answer3;
 		System.out.println(category);
-		Result res = new Result(category, type, difficulty, question, correct_answer, incorrect_answers1);
+		User res = new User(category, type, difficulty, question, correct_answer, incorrect_answers1);
 		try
 		{
-			ResultRepository.insertResult(res);
+			UserRepository.insertUser(res);
 		}
 		catch (SQLException ex)
 		{
-			Logger.getLogger(ResultsController.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserController1.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		catch (Exception ex)
 		{
-			Logger.getLogger(ResultsController.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserController1.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		SessionManager.setSessionResultValue(session, res);
+		SessionManager.setSessionUserValue(session, res);
 	}
 
 	private void gotoPage(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -202,28 +195,28 @@ public class ResultsController extends HttpServlet
 		return "Short description";
 	}// </editor-fold>
 
-	private boolean processUpdate(HttpServletRequest request, HttpSession session, Result result)
+	private boolean processUpdate(HttpServletRequest request, HttpSession session, User user)
 	{
-		Result newResult = transformRequestParametersIntoResult(request);
-		newResult.setId(result.getId());
+		User newUser = transformRequestParametersIntoUser(request);
+		newUser.setId(user.getId());
 
 		try
 		{
-			ResultRepository.updateResult(newResult);
-			SessionManager.setSessionResultValue(session, result);
+			UserRepository.updateUser(newUser);
+			SessionManager.setSessionUserValue(session, user);
 			System.out.println("saving");
 
-			System.out.println("ID " + newResult.getId());
+			System.out.println("ID " + newUser.getId());
 			System.out.println("worked");
 		}
 		catch (SQLException ex)
 		{
-			Logger.getLogger(ResultsController.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserController1.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return true;
 	}
 
-	private Result transformRequestParametersIntoResult(HttpServletRequest request)
+	private User transformRequestParametersIntoUser(HttpServletRequest request)
 	{
 		String difficulty = request.getParameter("difficulty");
 		String question = request.getParameter("question");
@@ -235,14 +228,14 @@ public class ResultsController extends HttpServlet
 
 		String incorrect_answers1 = incorrect_answer1 + " " + incorrect_answer2 + " " + incorrect_answer3;
 
-		Result result = new Result();
-		result.setCategory(request.getParameter("category"));
-		result.setType(request.getParameter("type"));
-		result.setDifficulty(difficulty);
-		result.setQuestion(question);
-		result.setCorrect_answer(correct_answer);
-		result.setIncorrect_answers1(incorrect_answers1);
+		User user = new User();
+		user.setCategory(request.getParameter("category"));
+		user.setType(request.getParameter("type"));
+		user.setDifficulty(difficulty);
+		user.setQuestion(question);
+		user.setCorrect_answer(correct_answer);
+		user.setIncorrect_answers1(incorrect_answers1);
 
-		return result;
+		return user;
 	}
 }

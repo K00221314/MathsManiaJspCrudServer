@@ -4,7 +4,7 @@ package entities;
  *
  * @author Daly
  */
-public class Results
+public class Result
 {
 
 	private int Id;
@@ -15,11 +15,11 @@ public class Results
 	private String correct_answer;
 	private String incorrect_answers1;
 
-	public Results()
+	public Result()
 	{
 
 	}
-	public Results(String category, String type, String difficulty, String question, String correct_answer, String incorrect_answers1)
+	public Result(String category, String type, String difficulty, String question, String correct_answer, String incorrect_answers1)
 	{
 		this.category = category;
 		this.type = type;
@@ -30,7 +30,7 @@ public class Results
 	}
 
 
-	public Results(int Id, String category, String type, String difficulty, String question, String correct_answer, String incorrect_answers1)
+	public Result(int Id, String category, String type, String difficulty, String question, String correct_answer, String incorrect_answers1)
 	{
 		this.Id = Id;
 		this.category = category;
@@ -41,7 +41,7 @@ public class Results
 		this.incorrect_answers1 = incorrect_answers1;
 	}
 
-	public Results(int Id)
+	public Result(int Id)
 	{
 		this.Id = Id;
 	}

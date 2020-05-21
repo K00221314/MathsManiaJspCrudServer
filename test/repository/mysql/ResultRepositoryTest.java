@@ -1,6 +1,6 @@
 package repository.mysql;
 
-import entities.Results;
+import entities.Result;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import org.junit.BeforeClass;
@@ -27,7 +27,7 @@ public class ResultRepositoryTest
 	public void testInsertAndDelete() throws Exception
 	{
 		//		System.out.println("insertResult");
-//		Results result_2 = null;
+//		Result result_2 = null;
 //		int expResult = 0;
 //		int result = ResultRepository.insertResult(result_2);
 //		assertEquals(expResult, result);
@@ -45,8 +45,8 @@ public class ResultRepositoryTest
 	{
 		System.out.println("getResultById");
 		int Id = 100;
-		Results expResult = new Results(100, "Maths", "3rd class", "Easy", "4 + 4", "8", "5 3 7");
-		Results result = ResultRepository.getResultById(Id);
+		Result expResult = new Result(100, "Maths", "3rd class", "Easy", "4 + 4", "8", "5 3 7");
+		Result result = ResultRepository.getResultById(Id);
 
 		assertEquals(expResult.getCategory(), result.getCategory());
 		assertEquals(expResult.getId(), result.getId());
@@ -58,7 +58,7 @@ public class ResultRepositoryTest
 	public void testGetResults() throws Exception
 	{
 		System.out.println("getResults");
-		ArrayList<Results> result = ResultRepository.getResults();
+		ArrayList<Result> result = ResultRepository.getResults();
 		assertNotNull(result);
 	}
 
@@ -68,8 +68,8 @@ public class ResultRepositoryTest
 		System.out.println("updateResult");
 
 		int Id = 100;
-		Results expResult = new Results(100, "Maths", "3rd class", "Easy", "4 + 4", "8", "5 3 9");
-		Results result = ResultRepository.getResultById(Id);
+		Result expResult = new Result(100, "Maths", "3rd class", "Easy", "4 + 4", "8", "5 3 9");
+		Result result = ResultRepository.getResultById(Id);
 
 		result.setIncorrect_answers1(expResult.getIncorrect_answers1());
 
