@@ -50,12 +50,12 @@ public class UserRepository implements Serializable
 		}
 	}
 
-	public Admin getAdminByCredentials(String username, String password) throws SQLException
+	public User getUserByCredentials(String username, String password) throws SQLException
 	{
 		Connection connection = DatabaseAgent.getConnection();
 		try
 		{
-			String query = "Select * from users where username = ? AND password = ? AND AccountType='Admin' ";
+			String query = "Select * from users where username = ? AND password = ?";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, username);
 			preparedStatement.setString(2, password);
@@ -63,7 +63,7 @@ public class UserRepository implements Serializable
 
 			if (resultSet.next())
 			{
-				return transformResultsetToAdmin(resultSet);
+				return transformResultsetToUser(resultSet);
 			}
 			else
 			{
@@ -90,7 +90,7 @@ public class UserRepository implements Serializable
 			ResultSet resultSet = ps.executeQuery();
 			if (resultSet.next())
 			{
-				return transformResultsetToAdmin(resultSet);
+				return transformResultsetToUser(resultSet);
 			}
 			else
 			{
@@ -103,7 +103,7 @@ public class UserRepository implements Serializable
 		}
 	}
 
-	public ArrayList<Admin> getAllUsers()
+	public ArrayList<User> getAllUsers()
 	{
 
 		ArrayList allusers = new ArrayList<>();
@@ -121,7 +121,7 @@ public class UserRepository implements Serializable
 			resultSet = ps.executeQuery();
 			while (resultSet.next())
 			{
-				Admin s = transformResultsetToAdmin(resultSet);
+				User s = transformResultsetToUser(resultSet);
 				allusers.add(s);
 			}
 			connection.close();
@@ -134,7 +134,7 @@ public class UserRepository implements Serializable
 		return allusers;
 	}
 
-	public UserRepository insertAdmin()
+	public UserRepository insertUser()
 	{
 
 		Connection connection = DatabaseAgent.getConnection();
@@ -169,49 +169,22 @@ public class UserRepository implements Serializable
 		return this;
 	}
 
-	public UserRepository update()
-	{
 
-		Connection connection = DatabaseAgent.getConnection();
-
-		String sql = "UPDATE users SET f_name = ?,l_name = ?,email = ?, username = ?,profile_pic = ?, password = ?,bio = ? WHERE user_id=?;";
-
-		try
-		{
-			PreparedStatement ps = connection.prepareStatement(sql);
-			ps.setString(1, this.getF_name());
-			ps.setString(2, this.getL_name());
-			ps.setString(3, this.getEmail());
-			ps.setString(4, this.getUsername());
-			ps.setString(5, this.getProfile_pic());
-			ps.setString(6, this.getPassword());
-			ps.setString(7, this.getBio());
-			ps.executeUpdate();
-			connection.close();
-
-		}
-		catch (SQLException ex)
-		{
-			System.out.println(ex);
-		}
-		return this;
-	}
-
-	public void updateUser(Admin admin) throws SQLException
+	public void updateUser(User user) throws SQLException
 	{
 		Connection connection = DatabaseAgent.getConnection();
 		try
 		{
 			String sql = "UPDATE users SET f_name = ?,l_name = ?,email = ?, username = ?,profile_pic = ?, password = ?,bio = ? WHERE user_id=?;";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, admin.getF_name());
-			preparedStatement.setString(2, admin.getL_name());
-			preparedStatement.setString(3, admin.getEmail());
-			preparedStatement.setString(4, admin.getUsername());
-			preparedStatement.setString(5, admin.getProfile_pic());
-			preparedStatement.setString(6, admin.getPassword());
-			preparedStatement.setString(7, admin.getBio());
-			preparedStatement.setInt(8, admin.getUser_id());
+			preparedStatement.setString(1, user.getfName());
+			preparedStatement.setString(2, user.getlName());
+			preparedStatement.setString(3, user.getEmail());
+			preparedStatement.setString(4, user.getUsername());
+			preparedStatement.setString(5, user.getProfilePic());
+			preparedStatement.setString(6, user.getPassword());
+			preparedStatement.setString(7, user.getBio());
+			preparedStatement.setInt(8, user.getUserid());
 			preparedStatement.executeUpdate();
 		}
 		finally
@@ -220,57 +193,18 @@ public class UserRepository implements Serializable
 		}
 	}
 
-	public UserRepository updateDatabase(int UserID, String f_name, String l_name, String email, String username, String profile_pic, String password, String bio)
+	private User transformResultsetToUser(ResultSet resultSet) throws SQLException
 	{
-
-		Connection connection = DatabaseAgent.getConnection();
-
-		this.setF_name(f_name);
-		this.setL_name(l_name);
-		this.setEmail(email);
-		this.setUsername(username);
-		this.setProfile_pic(profile_pic);
-		this.setPassword(password);
-		this.setBio(bio);
-
-		String sql = "UPDATE users SET f_name = ?, l_name = ?, email = ?, username = ?, profile_pic = ?, password = ?, bio = ? WHERE user_id = ? ";
-
-		try
-		{
-			PreparedStatement ps = connection.prepareStatement(sql);
-
-			ps.setString(1, this.getF_name());
-			ps.setString(2, this.getL_name());
-			ps.setString(3, this.getEmail());
-			ps.setString(4, this.getUsername());
-			ps.setString(5, this.getProfile_pic());
-			ps.setString(6, this.getPassword());
-			ps.setString(7, this.getBio());
-			ps.setInt(8, this.getUser_id());
-			System.out.println("ps" + ps.toString());
-			ps.executeUpdate();
-
-			connection.close();
-		}
-		catch (SQLException ex)
-		{
-			System.out.println(ex);
-		}
-		return this;
-	}
-
-	private Admin transformResultsetToAdmin(ResultSet resultSet) throws SQLException
-	{
-		Admin admin = new Admin();
-		admin.setUser_id(resultSet.getInt("user_id"));
-		admin.setF_name(resultSet.getString("f_name"));
-		admin.setL_name(resultSet.getString("l_name"));
-		admin.setEmail(resultSet.getString("email"));
-		admin.setUsername(resultSet.getString("username"));
-		admin.setProfile_pic(resultSet.getString("profile_pic"));
-		admin.setPassword(resultSet.getString("password"));
-		admin.setBio(resultSet.getString("bio"));
-		return admin;
+		User user = new User();
+		user.setUserid(resultSet.getInt("user_id"));
+		user.setfName(resultSet.getString("f_name"));
+		user.setlName(resultSet.getString("l_name"));
+		user.setEmail(resultSet.getString("email"));
+		user.setUsername(resultSet.getString("username"));
+		user.setProfilePic(resultSet.getString("profile_pic"));
+		user.setPassword(resultSet.getString("password"));
+		user.setBio(resultSet.getString("bio"));
+		return user;
 	}
 
 }
