@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
@@ -15,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Admin;
 import entities.User;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import repository.mysql.UserRepository;
 
 public class AdminController extends HttpServlet
@@ -24,7 +22,7 @@ public class AdminController extends HttpServlet
 	private final UserRepository userRepository = new UserRepository();
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException
+			throws ServletException, IOException, SQLException
 	{
 		HttpSession session = request.getSession();
 		Admin user1 = (Admin) session.getAttribute("user");
@@ -99,17 +97,16 @@ public class AdminController extends HttpServlet
 				int user_id = Integer.parseInt(userid);
 				System.out.println("user_id" + user_id);
 
-				Admin s = new Admin();
-				s = userRepository.getUserById(user_id);
+				User s = userRepository.getUserById(user_id);
 
 				if (s != null)
 				{
 
 					session.setAttribute("user", s);
 					System.out.println("sesion contents" + session.getAttribute("user"));
-					Admin u = new Admin();
-					System.out.println("get user details " + s.getUser_id());
-					u = userRepository.getUserById(s.getUser_id());
+					User u;
+					System.out.println("get user details " + s.getUserid());
+					u = userRepository.getUserById(s.getUserid());
 					if (u != null)
 					{
 						System.out.println("user" + u.getUsername());
@@ -126,7 +123,7 @@ public class AdminController extends HttpServlet
 
 			case "home":
 
-				Admin users = new Admin();
+				User users = new User();
 				ArrayList<User> allusers = new ArrayList<>();
 				allusers = userRepository.getUsers();
 				session.setAttribute("allusers", allusers);
@@ -146,16 +143,16 @@ public class AdminController extends HttpServlet
 		}
 	}
 
-	private boolean ProcessLogin(HttpServletRequest request, HttpSession session)
+	private boolean ProcessLogin(HttpServletRequest request, HttpSession session) throws SQLException
 	{
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		Admin us = new Admin(username, password);
+		User us = new User(username, password);
 		userRepository.getUserByCredentials(username, password);
 		session.setAttribute("user", us);
 
-		if (us.getUser_id() != 0)
+		if (us.getUserid() != 0)
 		{
 			return true;
 		}
@@ -179,10 +176,16 @@ public class AdminController extends HttpServlet
 
 		System.out.println(f_name);
 		User us = new User(f_name, l_name, email, username, profile_pic, password, bio);
-		userRepository.insertUser(us);
+		try
+		{
+			userRepository.insertUser(us);
+		}
+		catch (Exception ex)
+		{
+			Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+		}
 
 		session.setAttribute("user", us);
-		System.out.println("userid" + us.getUser_id());
 	}
 
 	private void gotoPage(String url,
@@ -208,7 +211,14 @@ public class AdminController extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		processRequest(request, response);
+		try
+		{
+			processRequest(request, response);
+		}
+		catch (SQLException ex)
+		{
+			Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 	/**
@@ -223,7 +233,14 @@ public class AdminController extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		processRequest(request, response);
+		try
+		{
+			processRequest(request, response);
+		}
+		catch (SQLException ex)
+		{
+			Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 	/**
@@ -237,35 +254,35 @@ public class AdminController extends HttpServlet
 		return "Short description";
 	}// </editor-fold>
 
-	public void ProcessUpdate(HttpServletRequest request, HttpSession session, Admin user)
+	public void ProcessUpdate(HttpServletRequest request, HttpSession session, Admin user) throws SQLException
 	{
-		String f_name = request.getParameter("f_name");
-		String l_name = request.getParameter("l_name");
-		String email = request.getParameter("email");
-		String username = request.getParameter("username");
-		String profile_pic = request.getParameter("profile_pic");
-		String password = request.getParameter("password");
+		mapRequestParametersIntoUser(request, user);
 
-		String bio = request.getParameter("bio");
-
-		System.out.println("f_name");
-		Admin us = new Admin(user.getUser_id(), f_name, l_name, email, username, profile_pic, password, bio);
-
-		userRepository.updateUser(us);
-		session.setAttribute("user", user);
-		System.out.println("userid" + user.getUser_id());
+		userRepository.updateUser(user);
+		SessionManager.setSessionUserValue(session, user);
 	}
 
-	private void ProcessDelete(HttpServletRequest request, HttpSession session, Admin user)
+	private void mapRequestParametersIntoUser(HttpServletRequest request, User user)
 	{
-		userRepository.deleteUser(user)
-		session.setAttribute("user", user);
-		System.out.println("userid" + user.getUser_id());
+		user.setBio(request.getParameter("bio"));
+		user.setEmail(request.getParameter("email"));
+		user.setfName(request.getParameter("f_name"));
+		user.setlName(request.getParameter("l_name"));
+		user.setProfilePic(request.getParameter("profile_pic"));
+		user.setPassword(request.getParameter("password"));
+		user.setUsername(request.getParameter("username"));
 	}
 
-	private boolean ProcessUserUpdate(HttpServletRequest request, Admin user, HttpSession session)
+	private void ProcessDelete(HttpServletRequest request, HttpSession session, Admin user) throws SQLException
 	{
-		String fNname = request.getParameter("f_name");
+		userRepository.deleteUser(user);
+		session.setAttribute("user", user);
+		System.out.println("userid" + user.getUserid());
+	}
+
+	private boolean ProcessUserUpdate(HttpServletRequest request, Admin user, HttpSession session) throws SQLException
+	{
+		String fName = request.getParameter("f_name");
 		String lName = request.getParameter("l_name");
 		String email = request.getParameter("email");
 		String username = request.getParameter("username");
@@ -273,15 +290,15 @@ public class AdminController extends HttpServlet
 		String password = request.getParameter("password");
 		String bio = request.getParameter("bio");
 
-		int UserID = user.getUser_id();
-		
-		User user1 = new User(fname, lName, email,  username,  profilePic, password,  bio) ;
+		int UserID = user.getUserid();
+
+		User user1 = new User(fName, lName, email, username, profilePic, password, bio);
 		System.out.println("in process update");
 
 		userRepository.updateUser(user1);
 
 		System.out.println("after update");
-		session.setAttribute("user", u);
+		session.setAttribute("user", user1);
 		return true;
 	}
 }
