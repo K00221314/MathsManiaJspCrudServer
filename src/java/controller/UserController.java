@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import entities.User;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import repository.mysql.UserRepository;
 
 public class UserController extends HttpServlet
@@ -19,296 +22,261 @@ public class UserController extends HttpServlet
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user");
-		if (user == null)
-		{
-			System.out.println("no user object");
-			user = new User();
-			session.setAttribute("user", user);
-		}
+		User user = SessionManager.getSessionUserValue(session);
+		User activeUser = SessionManager.getSessionActiveUserValue(session);
 
-		String menu = request.getParameter("menu");
-		System.out.println("menu" + menu);
+		String menu = getMenuSelction(request);
+
 		switch (menu)
 		{
-			case UserControllerCommands.LOGIN:
-				System.out.println("go to logon page");
-				gotoPage("/login.jsp", request, response);
+			case UserControllerCommands.About:
+				processAbout(request, response);
 				break;
-
-			case "SignUp":
-				gotoPage("/" + WebsiteMap.AddUser, request, response);
+			case UserControllerCommands.DeleteUserRequest:
+				processDeleteUserRequest(request, response, session);
 				break;
-			case "Save":
-				ProcessSave(request, session);
-				user = new User();
-				ArrayList<User> alluser2 = user.getAllUsers();
-				session.setAttribute("allUsers", alluser2);
-				gotoPage("/userHome.jsp", request, response);
+			case UserControllerCommands.DeleteActiveUserRequest:
+				processDeleteActiveUserRequest(request, response, session);
 				break;
-
-			case "Logout":
-				session.invalidate();
-				gotoPage("/home.jsp", request, response);
+			case UserControllerCommands.Login:
+				processLogin(request, response);
 				break;
-
-			case "Process Login":
-				boolean validLogin = ProcessLogin(request, session);
-				System.out.println("in process login");
-				User use = (User) session.getAttribute("user");
-				System.out.println(use.getAccountType());
-
-				if (!validLogin)
-				{
-					System.out.println("not valid login");
-					String message = "invalid logon details.. try again";
-					session.setAttribute("message", message);
-					gotoPage("/login.jsp", request, response);
-				}
-				else
-				{
-
-					if ("Student".equals(use.getAccountType()))
-					{
-						user = new User();
-						ArrayList<User> alluser = new ArrayList<>();
-						alluser = user.getAllUsers();
-						session.setAttribute("allUser", alluser);
-						gotoPage("/userHome.jsp", request, response);
-					}
-				}
+			case UserControllerCommands.InsertRequest:
+				processInsertRequest(request, response, session);
 				break;
-
-			case "Update User Details":
-				gotoPage("/UpdateUser.jsp", request, response);
+			case UserControllerCommands.LoginRequest:
+				processLoginReuest(request, response, session);
 				break;
-
-			case "About":
-				gotoPage("/about.jsp", request, response);
+			case UserControllerCommands.LogoutRequest:
+				processLogoutRequest(request, response, session);
 				break;
-
-			case "Save User Details":
-				boolean worked = ProcessUserUpdate(request, user, session);
-				gotoPage("/profile.jsp", request, response);
+			case UserControllerCommands.Profile:
+				processViewUser(request, response);
 				break;
-
-//            case "Delete User Check":
-//                System.out.println("case delete");
-//                gotoPage("/deleteProfile.jsp", request, response);
-//                break;
-			case "Delete User":
-				ProcessDelete(request, user, session);
-				session.invalidate();
-				gotoPage("/home.jsp", request, response);
+			case UserControllerCommands.SignUp:
+				processSignUp(request, response);
 				break;
-
-			case "Get User Details":
-				UserDetails(request, user, session);
-				gotoPage("/userHome.jsp", request, response);
+			case UserControllerCommands.Update:
+				processUserUpdate(request, response);
 				break;
-
-			case "Profile":
-				gotoPage("/userProfile.jsp", request, response);
+			case UserControllerCommands.UpdateRequest:
+				processUserUpdateRequest(request, response, session, user);
 				break;
-
-			case "Home":
-				System.out.println("Home");
-				user = new User();
-				ArrayList<User> alluser = new ArrayList<>();
-				alluser = user.getAllUsers();
-				session.setAttribute("allUser", alluser);
-
-				gotoPage("/userHome.jsp", request, response);
+			case UserControllerCommands.ViewAll:
+				processViewAll(session, request, response);
 				break;
-
+			case UserControllerCommands._ViewUser:
+				processViewAll(session, request, response);
+				break;
 			default:
 				gotoPage("/invalid.jsp", request, response);
 				break;
 		}
 	}
 
-	private boolean ProcessUserUpdate(HttpServletRequest request, User user, HttpSession session)
+	private String getMenuSelction(HttpServletRequest request)
 	{
-		String fName = request.getParameter("fName");
-		String lName = request.getParameter("lName");
-		String email = request.getParameter("email");
-		String username = request.getParameter("username");
-		String profilePic = request.getParameter("profilePic");
-		String password = request.getParameter("password");
-		String bio = request.getParameter("bio");
+		String menu = request.getParameter("menu");
 
-		int UserID = user.getUserid();
-		System.out.println("in process update");
-
-		User u = user.updateDatabase(UserID, fName, lName, email, username, profilePic, password, bio);
-		// put it back in the sesssion
-		System.out.println("after update");
-		session.setAttribute("user", u);
-		return true;
+		return menu.toLowerCase();
 	}
 
-	private boolean ProcessLogin(HttpServletRequest request, HttpSession session)
+	private void processAbout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		System.out.println("in process login method");
+		gotoPage("/about.jsp", request, response);
+	}
+
+	private void processDeleteUserRequest(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+	{
+		int userId = Integer.parseInt(request.getParameter("user_id"));
+		try
+		{
+			userRepository.deleteUserById(userId);
+			processLogoutRequest(request, response, session);
+		}
+		catch (SQLException | IOException | ServletException ex)
+		{
+			Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	private void processDeleteActiveUserRequest(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+	{
+		User activeUser = SessionManager.getSessionActiveUserValue(session);
+
+		try
+		{
+			userRepository.deleteUser(activeUser);
+			processLogoutRequest(request, response, session);
+		}
+		catch (SQLException | IOException | ServletException ex)
+		{
+			Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	private void processLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+	{
+		gotoPage("/login.jsp", request, response);
+	}
+
+	private void processLoginReuest(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException
+	{
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		System.out.println(username + " " + password);
-		User us = new User(username, password);
-		us.Login(username, password);
-		session.setAttribute("user", us);
-		System.out.println("User id: " + us.getUserid());
-		if (us.getUserid() != 0)
+		try
 		{
-			return true;
+			User activeUser = userRepository.getUserByCredentials(username, password);
+			if (activeUser == null)
+			{
+				String message = "Invalid logon details. Please try again.";
+				session.setAttribute("message", message);
+				gotoPage("/login.jsp", request, response);
+			}
+			else
+			{
+				SessionManager.setSessionActiveUserValue(session, activeUser);
+
+				directUserToUserTypeArea(activeUser, session, request, response);
+			}
+		}
+		catch (SQLException ex)
+		{
+			Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	private void directUserToUserTypeArea(User activeUser, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+	{
+		String userType = activeUser.getAccountType();
+
+		if ("Admin".equals(userType))
+		{
+//TODO Add ADmin code to navigate site
 		}
 		else
 		{
-			return false;
+			processViewAll(session, request, response);//TODO: change to go to only one user
 		}
 	}
 
-	private void ProcessSave(HttpServletRequest request, HttpSession session)
+	private void processInsertRequest(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException
 	{
-		System.out.println("in Process save");
-		String fName = request.getParameter("fName");
-		String lName = request.getParameter("lName");
-		String email = request.getParameter("email");
-		String username = request.getParameter("username");
-		String profile_pic = request.getParameter("profile_pic");
-		String password = request.getParameter("password");
-		String bio = request.getParameter("bio");
+		User user = new User();
+		mapRequestParametersIntoUser(request, user);
+		try
+		{
+			userRepository.insertUser(user);
+			processLogin(request, response);
+		}
+		catch (Exception ex)
+		{
+			Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		SessionManager.setSessionUserValue(session, user);
 
-		User us = new User(fName, lName, email, username, profile_pic, password, bio);
-		us.saveToDatabase();
-
-		session.setAttribute("user", us);
-		System.out.println("useridss" + us.getUserid());
 	}
 
-	private void ProcessDelete(HttpServletRequest request, User user, HttpSession session)
+	private void processSignUp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		int UserID = user.getUserid();
-		System.out.println("in  delete");
-
-		User u = new User(user.getUserid());
-		u.deleteDateabase(UserID);
-		// put it back in the sesssion
-		System.out.println("after delete");
-		session.setAttribute("user", u);
+		gotoPage("/" + WebsiteMap.AddUser, request, response);
 	}
 
-	private void gotoPage(String url,
-			HttpServletRequest request,
-			HttpServletResponse response)
-			throws ServletException, IOException
+	private void processLogoutRequest(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException
 	{
-		RequestDispatcher dispatcher
-				= getServletContext().getRequestDispatcher(url);
+		session.invalidate();
+		gotoPage("/home.jsp", request, response);
+	}
+
+	private void processUserUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+	{
+		gotoPage("/UpdateUser.jsp", request, response);
+	}
+
+	private void processUserUpdateRequest(HttpServletRequest request, HttpServletResponse response, HttpSession session, User user)
+	{
+		mapRequestParametersIntoUser(request, user);
+
+		try
+		{
+			userRepository.updateUser(user);
+			SessionManager.setSessionUserValue(session, user);
+			//TODO : consider active user
+			gotoPage("/profile.jsp", request, response);
+		}
+		catch (SQLException | ServletException | IOException ex)
+		{
+			Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+	}
+
+	private void processViewUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		//TODO: RD: Look up by id
+//		String idParameterString = request.getParameter("id");
+//		int userId = Integer.parseInt(idParameterString);
+//		try
+//		{
+//			User user = userRepository.getUserById(userId);
+//			SessionManager.setSessionUserValue(session, user);
+//			gotoPage("/" + WebsiteMap.DetailedUsersView, request, response);
+//		}
+//		catch (SQLException ex)
+//		{
+//			Logger.getLogger(UserController1.class.getName()).log(Level.SEVERE, null, ex);
+//		}
+
+		gotoPage("/userProfile.jsp", request, response);
+	}
+
+	private void processViewAll(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+	{
+
+		try
+		{
+			ArrayList<User> users = userRepository.getUsers();
+			session.setAttribute(SessionKeys.USERS, users);
+			gotoPage("/userHome.jsp", request, response);
+		}
+		catch (SQLException ex)
+		{
+			Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	private void mapRequestParametersIntoUser(HttpServletRequest request, User user)
+	{
+		user.setBio(request.getParameter("bio"));
+		user.setEmail(request.getParameter("email"));
+		user.setfName(request.getParameter("fName"));
+		user.setlName(request.getParameter("lName"));
+		user.setProfilePic(request.getParameter("profile_pic"));
+		user.setPassword(request.getParameter("password"));
+		user.setUsername(request.getParameter("username"));
+	}
+
+	private void gotoPage(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}
 
-	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-	/**
-	 * Handles the HTTP <code>GET</code> method.
-	 *
-	 * @param request servlet request
-	 * @param response servlet response
-	 * @throws ServletException if a servlet-specific error occurs
-	 * @throws IOException if an I/O error occurs
-	 */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		processRequest(request, response);
 	}
 
-	/**
-	 * Handles the HTTP <code>POST</code> method.
-	 *
-	 * @param request servlet request
-	 * @param response servlet response
-	 * @throws ServletException if a servlet-specific error occurs
-	 * @throws IOException if an I/O error occurs
-	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		processRequest(request, response);
 	}
 
-	/**
-	 * Returns a short description of the servlet.
-	 *
-	 * @return a String containing servlet description
-	 */
 	@Override
 	public String getServletInfo()
 	{
 		return "Short description";
-	}// </editor-fold>
-
-	private void UserDetails(HttpServletRequest request, User user, HttpSession session)
-	{
-		int UserID = user.getUserid();
-		User u = new User(user.getUserid());
-		u.getUserDetails(UserID);
-		session.setAttribute("user", u);
 	}
-
-//	 private String doFileUpload(List<FileItem> items,
-//            HttpServletResponse response) {
-//
-//        String fileName = null;
-//        FileItemFactory factory = new DiskFileItemFactory();
-//        ServletFileUpload upload = new ServletFileUpload(factory);
-//
-//        try {
-//            //  List items = upload.parseRequest(request);
-//            Iterator iterator = items.iterator();
-//            while (iterator.hasNext()) {
-//                FileItem item = (FileItem) iterator.next();
-//
-//                if (!item.isFormField()) {
-//
-//                    fileName = item.getName();
-//                    System.out.println("file name " + fileName);
-//                    String root = getServletContext().getRealPath("/");
-//                    File path = new File(root + "/img");
-//                    if (!path.exists()) {
-//                        boolean status = path.mkdirs();
-//                    }
-//
-//                    File uploadedFile = new File(path + "/" + fileName);
-//                    System.out.println(uploadedFile.getAbsolutePath());
-//                    
-//                    item.write(uploadedFile);
-//                }
-//            }
-//        } catch (FileUploadException e) {
-//            e.printStackTrace();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return fileName;
-//    }
-//
-//    private String getMultiRequest(List<FileItem> items, String fieldnameRequired) {
-//        System.out.println("in mult request form");
-//        String fname = null;
-//
-//        for (FileItem uploadItem : items) {
-//
-//            String fieldName = uploadItem.getFieldName();
-//
-//            if (fieldnameRequired.equals(fieldName)) {
-//                System.out.println(uploadItem.getString());
-//                return uploadItem.getString();
-//            }
-//
-//        }
-//
-//        return fname;
-//    }
 }
