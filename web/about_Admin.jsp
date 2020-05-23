@@ -68,7 +68,7 @@
              <div class="carousel-inner">
 
                 <div class="carousel-item active">
-                    <img src="img/menuscene3.PNG">
+                    <img src="img/menuscene3-dark.png">
                     <div class="carousel-caption">
                         <h1 class="display-2">Welcome</h1>
                         <h3>To Maths Mania</h3>
