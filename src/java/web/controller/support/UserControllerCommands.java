@@ -1,4 +1,4 @@
-package controller;
+package web.controller.support;
 
 public class UserControllerCommands
 {

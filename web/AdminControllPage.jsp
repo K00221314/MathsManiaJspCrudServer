@@ -1,8 +1,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@page import="model.Admin"%>
-<%@page import="entities.Results"%>
+<%@page import="entities.User"%>
+<%@page import="entities.Result"%>
 
 <!DOCTYPE html>
 <html lang="en">

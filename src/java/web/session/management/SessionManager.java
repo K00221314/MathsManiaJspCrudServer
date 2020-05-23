@@ -1,11 +1,13 @@
-package controller;
+package web.session.management;
 
 import entities.Result;
 import entities.User;
+import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 public class SessionManager
 {
+
 	public static User getSessionActiveUserValue(HttpSession session)
 	{
 		return (User) session.getAttribute(SessionKeys.ACTIVE_USER);
@@ -36,4 +38,13 @@ public class SessionManager
 		session.setAttribute(SessionKeys.USER, user);
 	}
 
+	public static ArrayList<User> getSessionUsersValue(HttpSession session)
+	{
+		return (ArrayList<User>) session.getAttribute(SessionKeys.USERS);
+	}
+
+	public static void setSessionUsersValue(HttpSession session, ArrayList<User> users)
+	{
+		session.setAttribute(SessionKeys.USERS, users);
+	}
 }

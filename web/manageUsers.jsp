@@ -1,7 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="model.Admin"%>
+<%@page import="entities.User"%>
 
 
 
@@ -79,19 +79,19 @@
             <div class="row padding">
 
 
-                <c:forEach var="users" items="${allusers}">  
+                <c:forEach var="userAccount" items="${allUsers}">  
                     <div class="col-md-4">
                         <div class="card">
 
-                            <img class="card-img-top" src="${pageContext.request.contextPath}/img/${users.profile_pic}">
+                            <img class="card-img-top" src="${pageContext.request.contextPath}/img/${userAccount.profilePic}">
                             <div class="card-body">
-                                <h4 class="card-title"><a href="AdminController?menu=getUserView&user_id=${users.user_id}">Username: ${users.username}</a></h4>
+                                <h4 class="card-title"><a href="AdminController?menu=getUserView&user_id=${userAccount.userid}">Username: ${userAccount.username}</a></h4>
 
-                                <h4 class="card-title"><a href="AdminController?menu=getUserView&user_id=${users.user_id}">First Name: ${users.f_name}</a></h4>
+                                <h4 class="card-title"><a href="AdminController?menu=getUserView&user_id=${userAccount.userid}">First Name: ${userAccount.fName}</a></h4>
 
 
-                                <a href="AdminController?menu=DeleteUser&user_id=${users.user_id}" class="btn btn-primary">Delete User</a>
-                                <a href="AdminController?menu=getUserView&user_id=${users.user_id}" class="btn btn-primary">Update User</a>
+                                <a href="AdminController?menu=DeleteUser&user_id=${userAccount.userid}" class="btn btn-primary">Delete User</a>
+                                <a href="AdminController?menu=getUserView&user_id=${userAccount.userid}" class="btn btn-primary">Update User</a>
 
 
                             </div>

@@ -2,8 +2,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="model.User"%>
-<%@page import="model.Admin"%>
+<%@page import="entities.User"%>
+<%@page import="entities.User"%>
 <!DOCTYPE html>
 <html>
     <head>

@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.User"%>
+<%@page import="entities.User"%>
 <!doctype html>
 <html>
 
@@ -22,22 +22,22 @@
 
                     <br>
                     <label>First name</label>
-                    <input type="text" name="fName" id="fName" value="${user.fName}" maxlength="40"/>
+                    <input type="text" name="fName" id="fName" value="${activeUser.fName}" maxlength="40"/>
                     <br>
                     <label>Last name</label>
-                    <input type="text" name="lName" id="lName" value="${user.lName}" maxlength="40"/>
+                    <input type="text" name="lName" id="lName" value="${activeUser.lName}" maxlength="40"/>
                     <br>
                     <label>Email</label>
-                    <input type="email" name="email" id="email" value="${user.email}" maxlength="40"/>
+                    <input type="email" name="email" id="email" value="${activeUser.email}" maxlength="40"/>
                     <br>
                     <label>User name</label>
-                    <input type="text" name="username" id="username" value="${user.username}" maxlength="40"/>
+                    <input type="text" name="username" id="username" value="${activeUser.username}" maxlength="40"/>
                     <br>
                     <label>Password</label>
-                    <input type="password" name="password" id="password" value="${user.password}" maxlength="40"/>
+                    <input type="password" name="password" id="password" value="${activeUser.password}" maxlength="40"/>
                     <br>
                     <label>Bio</label>
-                    <input type="text" name="bio" id="bio" value="${user.bio}" maxlength="400"/>
+                    <input type="text" name="bio" id="bio" value="${activeUser.bio}" maxlength="400"/>
                     <br>
 
 
@@ -47,7 +47,7 @@
                     <select name="profilePic" id="pic">
 
                         <option name="profilePic" id="pic" value = "1.jpg">Image1</option>
-                        <option name="profilePic" id="pic" value = "ISD">ISD</option>
+                        <option name="profilePic" id="pic" value = "ISD" ${activeUser.profilePic == "ISD" ? "selected" : ""}>ISD</option>
 
                     </select>
 
@@ -63,8 +63,5 @@
                 </form>
             </div>
         </div>
-
     </body>
-
 </html>
-

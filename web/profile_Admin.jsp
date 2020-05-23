@@ -3,7 +3,7 @@
     Created on : 12-Mar-2020, 22:20:02
     Author     : Rob
 --%>
-<%@page import="model.Admin"%>
+<%@page import="entities.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!DOCTYPE html>

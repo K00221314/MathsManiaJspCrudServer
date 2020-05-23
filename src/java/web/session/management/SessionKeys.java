@@ -1,4 +1,4 @@
-package controller;
+package web.session.management;
 
 public class SessionKeys
 {

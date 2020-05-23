@@ -1,7 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@page import="model.User"%>
+<%@page import="entities.User"%>
 
 <!DOCTYPE html>
 <html lang="en">

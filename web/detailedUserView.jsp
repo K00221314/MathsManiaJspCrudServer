@@ -1,7 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="model.Admin"%>
+<%@page import="entities.User"%>
 
 
 
@@ -30,10 +30,10 @@
 
                     <br>
                     <label>First name</label>
-                    <input type="text" name="f_name" id="f_name" value="${user.f_name}" maxlength="40"/>
+                    <input type="text" name="f_name" id="f_name" value="${user.fName}" maxlength="40"/>
                     <br>
                     <label>Last name</label>
-                    <input type="text" name="l_name" id="l_name" value="${user.l_name}" maxlength="40"/>
+                    <input type="text" name="l_name" id="l_name" value="${user.lName}" maxlength="40"/>
                     <br>
                     <label>Email</label>
                     <input type="email" name="email" id="email" value="${user.email}" maxlength="40"/>

@@ -1,5 +1,8 @@
 package controller;
 
+import web.session.management.SessionManager;
+import web.session.management.SessionKeys;
+import web.controller.support.UserControllerCommands;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -25,6 +28,12 @@ public class UserController extends HttpServlet
 		User user = SessionManager.getSessionUserValue(session);
 		User activeUser = SessionManager.getSessionActiveUserValue(session);
 
+		if (activeUser == null);
+		{
+			//TODO: Work out user security
+			//gotoPage("/invalid.jsp", request, response);
+		}
+		
 		String menu = getMenuSelction(request);
 
 		switch (menu)
@@ -60,7 +69,7 @@ public class UserController extends HttpServlet
 				processUserUpdate(request, response);
 				break;
 			case UserControllerCommands.UpdateRequest:
-				processUserUpdateRequest(request, response, session, user);
+				processUserUpdateRequest(request, response, session, activeUser);
 				break;
 			case UserControllerCommands.ViewAll:
 				processViewAll(session, request, response);
@@ -78,7 +87,7 @@ public class UserController extends HttpServlet
 	{
 		String menu = request.getParameter("menu");
 
-		return menu.toLowerCase();
+		return menu;
 	}
 
 	private void processAbout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -251,7 +260,7 @@ public class UserController extends HttpServlet
 		user.setEmail(request.getParameter("email"));
 		user.setfName(request.getParameter("fName"));
 		user.setlName(request.getParameter("lName"));
-		user.setProfilePic(request.getParameter("profile_pic"));
+		user.setProfilePic(request.getParameter("profilePic"));
 		user.setPassword(request.getParameter("password"));
 		user.setUsername(request.getParameter("username"));
 	}
