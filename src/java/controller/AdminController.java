@@ -328,6 +328,7 @@ public class AdminController extends HttpServlet
 		if ("Admin".equals(userType))
 		{
 //TODO Add ADmin code to navigate site
+			gotoPage("/AdminHomepage.jsp", request, response);
 		}
 		else
 		{
