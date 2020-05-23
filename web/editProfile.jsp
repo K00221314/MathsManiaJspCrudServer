@@ -44,10 +44,10 @@
                     <label>Profile Picture</label>
 
                     <br>
-                    <select name="profilePic" id="pic">
+                    <select name="profile_pic" id="pic">
 
-                        <option name="profilePic" id="pic" value = "1.jpg">Image1</option>
-                        <option name="profilePic" id="pic" value = "ISD" ${activeUser.profilePic == "ISD" ? "selected" : ""}>ISD</option>
+                        <option name="profile_pic" id="profile_pic" value = "1.jpg">Image1</option>
+                        <option name="profile_pic" id="profile_pic" value = "ISD" ${activeUser.profile_pic == "ISD" ? "selected" : ""}>ISD</option>
 
                     </select>
 

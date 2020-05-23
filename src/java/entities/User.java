@@ -12,18 +12,18 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String bio;
-    private String profilePic;
+    private String profile_pic;
    
 
     public User() {
     }
 
-    public User(String fname, String lName, String email, String username, String profilePic, String password, String bio) {
+    public User(String fname, String lName, String email, String username, String profile_pic, String password, String bio) {
         this.fName = fname;
         this.lName = lName;
         this.email = email;
         this.username = username;
-        this.profilePic = profilePic;
+        this.profile_pic = profile_pic;
         this.password = password;
         this.bio = bio;
 
@@ -163,16 +163,16 @@ public class User implements Serializable {
     }
 
     /**
-     * @return the profilePic
+     * @return the profile_pic
      */
-    public String getProfilePic() {
-        return profilePic;
+    public String getProfile_pic() {
+        return profile_pic;
     }
 
     /**
-     * @param profilePic the profilePic to set
+     * @param profile_pic the profile_pic to set
      */
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
+    public void setProfile_pic(String profile_pic) {
+        this.profile_pic = profile_pic;
     }
 }

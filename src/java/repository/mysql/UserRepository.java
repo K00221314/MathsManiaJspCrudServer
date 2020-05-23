@@ -135,7 +135,7 @@ public class UserRepository
 			preparedStatement.setString(2, user.getlName());
 			preparedStatement.setString(3, user.getEmail());
 			preparedStatement.setString(4, user.getUsername());
-			preparedStatement.setString(5, user.getProfilePic());
+			preparedStatement.setString(5, user.getProfile_pic());
 			preparedStatement.setString(6, user.getPassword());
 			preparedStatement.setString(7, user.getBio());
 			preparedStatement.executeUpdate();
@@ -161,7 +161,7 @@ public class UserRepository
 			preparedStatement.setString(2, user.getlName());
 			preparedStatement.setString(3, user.getEmail());
 			preparedStatement.setString(4, user.getUsername());
-			preparedStatement.setString(5, user.getProfilePic());
+			preparedStatement.setString(5, user.getProfile_pic());
 			preparedStatement.setString(6, user.getPassword());
 			preparedStatement.setString(7, user.getBio());
 			preparedStatement.setInt(8, user.getUserid());
@@ -181,7 +181,7 @@ public class UserRepository
 		user.setlName(resultSet.getString("l_name"));
 		user.setEmail(resultSet.getString("email"));
 		user.setUsername(resultSet.getString("username"));
-		user.setProfilePic(resultSet.getString("profile_pic"));
+		user.setProfile_pic(resultSet.getString("profile_pic"));
 		user.setPassword(resultSet.getString("password"));
 		user.setBio(resultSet.getString("bio"));
 		return user;

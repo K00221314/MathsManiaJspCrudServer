@@ -260,7 +260,7 @@ public class UserController extends HttpServlet
 		user.setEmail(request.getParameter("email"));
 		user.setfName(request.getParameter("fName"));
 		user.setlName(request.getParameter("lName"));
-		user.setProfilePic(request.getParameter("profilePic"));
+		user.setProfile_pic(request.getParameter("profile_pic"));
 		user.setPassword(request.getParameter("password"));
 		user.setUsername(request.getParameter("username"));
 	}

@@ -15,7 +15,7 @@
 
         <div class="login-page">
             <div class="logo">               
-                <img class="logohome" src="img/logonew3.png" alt="LIT Gallery Logo">
+                <img class="logohome" src="img/logonew3.png" alt="Maths Mania">
             </div>
             <h1>Edit Profile</h1>
             <div class="form">
@@ -46,7 +46,7 @@
                     <select name="profile_pic" id="pic">
 
                         <option name="profile_pic" id="pic" value = "1.jpg">Image1</option>
-                        <option name="profile_pic" id="pic" value = "ISD" ${activeUser.profilePic == "ISD" ? "selected" : ""}>ISD</option>
+                        <option name="profile_pic" id="pic" value = "ISD" ${activeUser.profile_pic == "ISD" ? "selected" : ""}>ISD</option>
 
 
                     </select>

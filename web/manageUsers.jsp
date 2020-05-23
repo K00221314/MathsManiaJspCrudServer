@@ -83,7 +83,7 @@
                     <div class="col-md-4">
                         <div class="card">
 
-                            <img class="card-img-top" src="${pageContext.request.contextPath}/img/${userAccount.profilePic}">
+                            <img class="card-img-top" src="${pageContext.request.contextPath}/img/${userAccount.profile_pic}">
                             <div class="card-body">
                                 <h4 class="card-title"><a href="AdminController?menu=getUserView&user_id=${userAccount.userid}">Username: ${userAccount.username}</a></h4>
 

@@ -68,7 +68,7 @@
                 <div class="col-md-3">
                     <div class="text-center">
 						
-                      <a class="username" href="profile.jsp"><img src="${pageContext.request.contextPath}/img/${activeUser.profilePic}" class="img-fluid"></a>
+                      <a class="username" href="profile.jsp"><img src="${pageContext.request.contextPath}/img/${activeUser.profile_pic}" class="img-fluid"></a>
 
                         <h2>Name</h2>
                         <h3>${activeUser.username}</h3>

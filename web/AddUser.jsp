@@ -41,8 +41,8 @@
                     <br>
                     <select name="profile_pic" id="pic">
 
-                        <option name="profile_pic" id="pic" value = "1.jpg">Image1</option>
-                        <option name="profile_pic" id="pic" value = "ISD">ISD</option>
+                        <option name="profile_pic" id="profile_pic" value = "1.jpg" >Image1</option>
+                          <option name="profile_pic" id="profile_pic" value = "ISD" ${User.profile_pic == "ISD" ? "selected" : ""}>ISD</option>
 
                     </select>
 

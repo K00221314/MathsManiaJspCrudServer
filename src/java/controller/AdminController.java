@@ -44,7 +44,7 @@ public class AdminController extends HttpServlet
 				processLogoutRequest(session, request, response);
 				break;
 			case AdminControllerCommands.Update:
-				ProcessUpdate(request, session, user);
+				ProcessUpdate(request,response, session, user);
 
 				break;
 			case AdminControllerCommands.UpdateUserRequest:
@@ -52,6 +52,7 @@ public class AdminController extends HttpServlet
 				break;
 			case AdminControllerCommands.DeleteUser:
 				processDeleteUserRequest(request, session, response);
+				processViewAll(session, request, response);
 				break;
 			case AdminControllerCommands.Login:
 				processLogin(request, response);
@@ -100,34 +101,23 @@ public class AdminController extends HttpServlet
 
 	private void processViewUser(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws SQLException, NumberFormatException, IOException, ServletException
 	{
-//		String userid = request.getParameter("user_id");
-//		int user_id = Integer.parseInt(userid);
-//		System.out.println("user_id" + user_id);
-//		User s = userRepository.getUserById(user_id);
-//
-//		if (s != null)
-//		{
-//			session.setAttribute("user", s);
-//			User u = userRepository.getUserById(s.getUserid());
-//			if (u != null)
-//			{
-//				session.setAttribute("user", u);
-//				gotoPage("/detailedUserView.jsp", request, response);
-//			}
-//			else
-//			{
-//			}
-//		}
-		
-		try
+		String userid = request.getParameter("user_id");
+		int user_id = Integer.parseInt(userid);
+		System.out.println("user_id" + user_id);
+		User s = userRepository.getUserById(user_id);
+
+		if (s != null)
 		{
-			ArrayList<User> allUsers = userRepository.getUsers();
-			session.setAttribute("allUsers", allUsers);
-			gotoPage("/manageUsers.jsp", request, response);
-		}
-		catch (SQLException ex)
-		{
-			Logger.getLogger(ResultsController.class.getName()).log(Level.SEVERE, null, ex);
+			session.setAttribute("user", s);
+			User u = userRepository.getUserById(s.getUserid());
+			if (u != null)
+			{
+				session.setAttribute("user", u);
+				gotoPage("/detailedUserView.jsp", request, response);
+			}
+			else
+			{
+			}
 		}
 	}
 
@@ -186,7 +176,7 @@ public class AdminController extends HttpServlet
 		{
 			Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		gotoPage("/manageUsers.jsp", request, response);
+		
 	}
 
 	private void processInsertRequest(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws ServletException, IOException
@@ -296,13 +286,28 @@ public class AdminController extends HttpServlet
 		return "Short description";
 	}// </editor-fold>
 
-	public void ProcessUpdate(HttpServletRequest request, HttpSession session, User user) throws SQLException
+	public void ProcessUpdate(HttpServletRequest request,HttpServletResponse response, HttpSession session, User user) throws SQLException
 	{
+//		//TODO when admin pdate user it does not return to manageUsers page
+//		mapRequestParametersIntoUser(request, user);
+//
+//		userRepository.updateUser(user);
+//		SessionManager.setSessionUserValue(session, user);
+//		gotoPage("/manageUsers.jsp", request, response);
+		
 		mapRequestParametersIntoUser(request, user);
 
-		userRepository.updateUser(user);
-		SessionManager.setSessionUserValue(session, user);
-		//gotoPage("/manageUsers.jsp", request, response);
+		try
+		{
+			userRepository.updateUser(user);
+			SessionManager.setSessionUserValue(session, user);
+			//TODO : consider active user
+			gotoPage("/manageUsers.jsp", request, response);
+		}
+		catch (SQLException | ServletException | IOException ex)
+		{
+			Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 	private void mapRequestParametersIntoUser(HttpServletRequest request, User user)
@@ -311,7 +316,7 @@ public class AdminController extends HttpServlet
 		user.setEmail(request.getParameter("email"));
 		user.setfName(request.getParameter("f_name"));
 		user.setlName(request.getParameter("l_name"));
-		user.setProfilePic(request.getParameter("profile_pic"));
+		user.setProfile_pic(request.getParameter("profile_pic"));
 		user.setPassword(request.getParameter("password"));
 		user.setUsername(request.getParameter("username"));
 	}
