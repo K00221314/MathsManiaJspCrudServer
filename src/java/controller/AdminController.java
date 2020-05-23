@@ -100,23 +100,34 @@ public class AdminController extends HttpServlet
 
 	private void processViewUser(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws SQLException, NumberFormatException, IOException, ServletException
 	{
-		String userid = request.getParameter("user_id");
-		int user_id = Integer.parseInt(userid);
-		System.out.println("user_id" + user_id);
-		User s = userRepository.getUserById(user_id);
-
-		if (s != null)
+//		String userid = request.getParameter("user_id");
+//		int user_id = Integer.parseInt(userid);
+//		System.out.println("user_id" + user_id);
+//		User s = userRepository.getUserById(user_id);
+//
+//		if (s != null)
+//		{
+//			session.setAttribute("user", s);
+//			User u = userRepository.getUserById(s.getUserid());
+//			if (u != null)
+//			{
+//				session.setAttribute("user", u);
+//				gotoPage("/detailedUserView.jsp", request, response);
+//			}
+//			else
+//			{
+//			}
+//		}
+		
+		try
 		{
-			session.setAttribute("user", s);
-			User u = userRepository.getUserById(s.getUserid());
-			if (u != null)
-			{
-				session.setAttribute("user", u);
-				gotoPage("/detailedUserView.jsp", request, response);
-			}
-			else
-			{
-			}
+			ArrayList<User> allUsers = userRepository.getUsers();
+			session.setAttribute("allUsers", allUsers);
+			gotoPage("/manageUsers.jsp", request, response);
+		}
+		catch (SQLException ex)
+		{
+			Logger.getLogger(ResultsController.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 

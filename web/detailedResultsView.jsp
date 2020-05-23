@@ -3,23 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="entities.Result"%>
 
-
-
-
 <!doctype html>
-
-
 <html>
-
     <head>
         <meta charset="UTF-8">
         <title>Edit Profile</title>
         <link rel="stylesheet" href="css/form.css">
         <meta name="viewport" content="width=device-width , initial-scale=1.0">
     </head>
-
     <body>
-
         <div class="login-page">
             <div class="logo">               
                 <img class="logohome" src="img/logonew3.png" alt="LIT Gallery Logo">
@@ -27,8 +19,6 @@
             <h1>Edit Question</h1>
             <div class="form">
                 <form action="ResultsController" method="get" class="show-form" name="results">
-
-
                     <br>
                     <label>category</label>
                     <input type="text" name="category" id="category" value="${results.category}"/>

@@ -21,7 +21,7 @@
 
         <div class="login-page">
             <div class="logo">               
-                <img class="logohome" src="img/logonew3.png" alt="LIT Gallery Logo">
+                <img class="logohome" src="img/logonew3.png" alt="Maths Mania">
             </div>
             <h1>Edit Profile</h1>
             <div class="form">

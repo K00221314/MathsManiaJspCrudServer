@@ -34,7 +34,7 @@ public class UserRepository
 	public boolean deleteUser(User user) throws SQLException
 	{
 		Connection connection = DatabaseAgent.getConnection();
-		String sql = "DELETE FROM users WHERE user.userid=?;";
+		String sql = "DELETE FROM users WHERE user_id=?;";
 
 		try
 		{

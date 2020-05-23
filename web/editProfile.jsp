@@ -57,7 +57,7 @@
 
                     <input type="submit" name="menu" value="Save User Details"/>
                     <input type="reset" />
-                    <input type="submit" name="menu" value="Delete User Check"/>
+                    <input type="submit" name="menu" value="Delete User"/>
 
 
                 </form>
