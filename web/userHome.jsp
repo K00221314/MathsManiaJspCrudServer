@@ -141,7 +141,7 @@
                 </div>
 
                 <div class="col-sm-12 col-md-4">
-                    <i class="fas fa-user-tie"></i>
+                   <i class="fas fa-calculator"></i>
                     <h3>Background</h3>
                     <p>Maths is currently a major talking point in Ireland with the introduction of the new curriculum which is believed to be introduced in 2021. </p>
                 </div>

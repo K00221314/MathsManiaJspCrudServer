@@ -59,6 +59,7 @@ html,body{
 }
 
 
+
 .welcome{
     width: 75%;
     margin: 0 auto;
@@ -77,8 +78,8 @@ html,body{
     color: #4cd963;
 }
 
-/*take this out when icons are put in */
-.fa-code, .fa-bullseye, .fa-crosshairs, .fa-user-tie{
+
+.fa-code, .fa-bullseye, .fa-crosshairs, .fa-calculator{
     color: #4cd963;
     font-size: 4em;
     margin: 1rem;
@@ -233,7 +234,7 @@ figure {
 	height: 100%;
 }
 #fixed {
-	background-image: url('img/mac.png');
+	
 	position: fixed;
 	display: block;
 	top: 0;
@@ -253,24 +254,6 @@ figure {
 
 
 
-
-
-/*
-Extra small (xs) devices (portrait phones, less than 576px)
-No media query since this is the default in Bootstrap
-
-Small (sm) devices (landscape phones, 576px and up)
-@media (min-width: 576px) { ... }
-
-Medium (md) devices (tablets, 768px and up)
-@media (min-width: 768px) { ... }
-
-Large (lg) devices (desktops, 992px and up)
-@media (min-width: 992px) { ... }
-
-Extra (xl) large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) { ... }
-*/
 
 
 
