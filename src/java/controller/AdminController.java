@@ -70,7 +70,7 @@ public class AdminController extends HttpServlet
 				break;
 
 			case AdminControllerCommands.UpdateRequest:
-				processUpdateUserRequest(request, user, session, response);
+				processUpdateUserRequest(request, activeUser, session, response);
 				break;
 
 			default:

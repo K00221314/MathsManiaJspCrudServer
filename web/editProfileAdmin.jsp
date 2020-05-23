@@ -23,22 +23,22 @@
 
                     <br>
                     <label>First name</label>
-                    <input type="text" name="f_name" id="f_name" value="${user.f_name}" maxlength="40"/>
+                    <input type="text" name="f_name" id="f_name" value="${activeUser.fName}" maxlength="40"/>
                     <br>
                     <label>Last name</label>
-                    <input type="text" name="l_name" id="l_name" value="${user.l_name}" maxlength="40"/>
+                    <input type="text" name="l_name" id="l_name" value="${activeUser.lName}" maxlength="40"/>
                     <br>
                     <label>Email</label>
-                    <input type="email" name="email" id="email" value="${user.email}" maxlength="40"/>
+                    <input type="email" name="email" id="email" value="${activeUser.email}" maxlength="40"/>
                     <br>
                     <label>User name</label>
-                    <input type="text" name="username" id="username" value="${user.username}" maxlength="40"/>
+                    <input type="text" name="username" id="username" value="${activeUser.username}" maxlength="40"/>
                     <br>
                     <label>Password</label>
-                    <input type="password" name="password" id="password" value="${user.password}" maxlength="40"/>
+                    <input type="password" name="password" id="password" value="${activeUser.password}" maxlength="40"/>
                     <br>
                     <label>Bio</label>
-                    <input type="text" name="bio" id="bio" value="${user.bio}" maxlength="400"/>
+                    <input type="text" name="bio" id="bio" value="${activeUser.bio}" maxlength="400"/>
                     <br>
                     <label>Profile Picture</label>
 
@@ -46,7 +46,8 @@
                     <select name="profile_pic" id="pic">
 
                         <option name="profile_pic" id="pic" value = "1.jpg">Image1</option>
-                        <option name="profile_pic" id="pic" value = "ISD">ISD</option>
+                        <option name="profile_pic" id="pic" value = "ISD" ${activeUser.profilePic == "ISD" ? "selected" : ""}>ISD</option>
+
 
                     </select>
 

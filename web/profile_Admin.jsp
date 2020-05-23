@@ -67,10 +67,11 @@
 
                 <div class="col-md-3">
                     <div class="text-center">
-                        <a class="username" href="profile.jsp"><img src="${pageContext.request.contextPath}/img/${user.profile_pic}" class="img-fluid"></a>
+						
+                      <a class="username" href="profile.jsp"><img src="${pageContext.request.contextPath}/img/${activeUser.profilePic}" class="img-fluid"></a>
 
                         <h2>Name</h2>
-                        <h3>${user.username}</h3>
+                        <h3>${activeUser.username}</h3>
 
                         <a href="editProfileAdmin.jsp" class="btn btn-primary">Edit Profile</a>
                     </div>
@@ -78,17 +79,7 @@
 
                 <div class="col-md-9">
                     <h2>Bio</h2>
-                    <p class="lead">${user.bio}</p>
-
-                    <hr>
-
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus quo ea repellendus recusandae nihil, minima aut deleniti exercitationem dolorum. Voluptates delectus nisi, suscipit totam porro commodi repellat eos dicta fugit, cumque, aut a velit. Quisquam qui, ab modi eius sequi quas aperiam inventore voluptatibus facere quia consequatur nesciunt debitis minima non distinctio repudiandae saepe tenetur cupiditate fugit! Explicabo a voluptatum sunt ipsam vel, assumenda adipisci, ut ab quia ratione, ipsum quidem reiciendis omnis qui, sint laudantium iure magnam commodi totam!
-                    </p>
-
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus quo ea repellendus recusandae nihil, minima aut deleniti exercitationem dolorum. Voluptates delectus nisi, suscipit totam porro commodi repellat eos dicta fugit, cumque, aut a velit. Quisquam qui, ab modi eius sequi quas aperiam inventore voluptatibus facere quia consequatur nesciunt debitis minima non distinctio repudiandae saepe tenetur cupiditate fugit! Explicabo a voluptatum sunt ipsam vel, assumenda adipisci, ut ab quia ratione, ipsum quidem reiciendis omnis qui, sint laudantium iure magnam commodi totam!
-                    </p>
+                    <p class="lead">${activeUser.bio}</p>
                 </div>
             </div> 
 
