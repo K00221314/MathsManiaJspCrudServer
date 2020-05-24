@@ -235,7 +235,7 @@
                 <div class="row text-center">
                     <div class="col-md-4">
                        
-                        <img src="img/logonew3.png">
+                        <img src="img/logofooter1.png">
 
 
                     </div>
@@ -245,11 +245,11 @@
                     </div>
 
                     <div class="col-md-4">
-                        <h5>By Robert Daly</h5>
+                        <h5 class = "white">By Robert Daly</h5>
                         <hr class="light">
-                        <p>K00221314</p>
-                        <p>IDM4</p>
-                        <p>LIT</p>
+                        <p class = "white">K00221314</p>
+                        <p class = "white">IDM4</p>
+                        <p class = "white">LIT</p>
 
                     </div>
 

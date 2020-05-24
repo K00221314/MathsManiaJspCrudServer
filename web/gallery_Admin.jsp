@@ -162,7 +162,7 @@
                 <div class="row text-center">
                     <div class="col-md-4">
 
-                        <img src="img/logonew3.png">
+                        <img src="img/logofooter1.png">
 
 
                     </div>

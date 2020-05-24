@@ -6,18 +6,63 @@
 <!DOCTYPE html>
 <html>
     <head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <link href="css/styles.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="${pageContext.request.contextPath}/css/form.css" rel="stylesheet" type="text/css">
         <title>Maths Mania</title>
     </head>
     <body>
-        <div class="login-page">
-            <div class="logo">
+		
+		 <!-- Navigation -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+            <div class="container-fluid">
+                <a class = "navbar-brand" href="adminHome.jsp"><img src="img/logonew2.png"></a>
+                <button class="navbar-toggler" type ="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminHome.jsp">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about_Admin.jsp">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="gallery_Admin.jsp">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile_Admin.jsp">Profile</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="AdminControllPage.jsp">Edit</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="AdminController" class="login-form">  
+                                <input type="submit" name="menu" value="Logout" class="btn btn-primary btn-lrg" />
 
-                <img class="logohome" src="${pageContext.request.contextPath}/img/logonew2.png">
+                            </form>
 
+                        </li>
+                    </ul>
+
+
+                </div>
             </div>
-            <h1>Sign Up</h1>
+
+
+        </nav>
+		
+        <div class="login-page">
+           
+            <h1>Add Question</h1>
             <div class="form">
                 <form action="ResultsController" method="get" class="register-form" name="registration">
 

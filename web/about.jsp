@@ -186,8 +186,8 @@
             <div class="container-fluid padding">
                 <div class="row text-center">
                     <div class="col-md-4">
-                        <!--<img src="img/w3newbie.png">-->
-                        <img src="img/logonew3.png">
+                 
+                        <img src="img/logofooter1.png">
 
 
                     </div>
