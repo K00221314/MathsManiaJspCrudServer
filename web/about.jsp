@@ -51,50 +51,7 @@
 
         </nav>
 
-        <!--- Image Slider -->
-        <div id="slides" class="carousel slide" data-ride="carousel">
-            <ul class="carousel-indicators">
-                <li data-target="#slides" data-slide-to="0" class="active"></li>
-                <li data-target="#slides" data-slide-to="1"></li>
-                <li data-target="#slides" data-slide-to="2"></li>
-            </ul>
-            <div class="carousel-inner">
-
-                <div class="carousel-item active">
-                    <img src="img/menuscene3-dark.png">
-                    <div class="carousel-caption">
-                        <h1 class="display-2">Welcome</h1>
-                        <h3>To Math Mania</h3>
-                        <button type="button" class="btn btn-primary btn-lrg" hr>Download</button>
-
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="img/division.PNG">
-                </div>
-
-                <div class="carousel-item">
-                    <img src="img/division3.PNG">
-                </div>
-				
-				<div class="carousel-item">
-                    <img src="img/division2.PNG">
-                </div>
-				
-				<div class="carousel-item">
-                    <img src="img/multi1.PNG">
-                </div>
-				
-				<div class="carousel-item">
-                    <img src="img/multi4.PNG">
-                </div>
-            </div>
-
-
-
-
-        </div>
+      
 
 
         <!--- Welcome Section -->
@@ -113,7 +70,7 @@
             <div class="row padding">
                 <div class="col-lg-12 text-center">
 
-                    <p>Math Mania is an interactive virtual reality application created by Robert Daly as part of his final year project at Limerick Institute of Technology. The applications target audience is 3rd class primary school pupils</p>
+                    <p>Maths Mania is an interactive virtual reality application created by Robert Daly as part of his final year project at Limerick Institute of Technology. The applications target audience is 3rd class primary school pupils</p>
                     <p>The game currently has two levels. The first level deals with a division question and the second level deals with a multiplication question. </p>			
                 </div>
             </div>

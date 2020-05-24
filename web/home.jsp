@@ -68,7 +68,7 @@
                     <div class="carousel-caption">
                         <h1 class="display-2">Welcome</h1>
                         <h3>To Maths Mania</h3>
-                        <button type="button" class="btn btn-primary btn-lrg" hr>Download</button>
+                       
 
                     </div>
                 </div>
@@ -214,17 +214,7 @@
 
 
 
-        <!--- Connect -->
-        <div class="container-fluid padding">
-            <div class="row text-center padding">
-                <div class="col-12">
-                    <h2>Download the VR game</h2>
-                </div>
-                <div class="col-12 social padding">
-                     <button type="button" class="btn btn-primary btn-lrg " hr>Download</button>
-                </div>
-            </div>
-        </div>
+       
 
         <!--- Footer -->
         <footer>
