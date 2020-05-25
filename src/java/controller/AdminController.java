@@ -1,7 +1,6 @@
 package controller;
 
 import web.session.management.SessionManager;
-import web.session.management.SessionKeys;
 import web.controller.support.AdminControllerCommands;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class AdminController extends HttpServlet
 				processLogoutRequest(session, request, response);
 				break;
 			case AdminControllerCommands.Update:
-				ProcessUpdate(request,response, session, user);
+				processUpdate(request,response, session, user);
 
 				break;
 			case AdminControllerCommands.UpdateUserRequest:
@@ -286,7 +285,7 @@ public class AdminController extends HttpServlet
 		return "Short description";
 	}// </editor-fold>
 
-	public void ProcessUpdate(HttpServletRequest request,HttpServletResponse response, HttpSession session, User user) throws SQLException
+	public void processUpdate(HttpServletRequest request,HttpServletResponse response, HttpSession session, User user) throws SQLException
 	{
 //		//TODO when admin pdate user it does not return to manageUsers page
 //		mapRequestParametersIntoUser(request, user);
@@ -302,7 +301,7 @@ public class AdminController extends HttpServlet
 			userRepository.updateUser(user);
 			SessionManager.setSessionUserValue(session, user);
 			//TODO : consider active user
-			gotoPage("/manageUsers.jsp", request, response);
+			processViewAll(session, request, response);;
 		}
 		catch (SQLException | ServletException | IOException ex)
 		{
@@ -327,59 +326,15 @@ public class AdminController extends HttpServlet
 
 		if ("Admin".equals(userType))
 		{
-//TODO Add ADmin code to navigate site
-			gotoPage("/AdminHomepage.jsp", request, response);
+
+			gotoPage("/AdminControllPage.jsp", request, response);
 		}
 		else
 		{
-			processViewAll(session, request, response);//TODO: change to go to only one user
+			gotoPage("/AdminControllPage.jsp", request, response);
+			//processViewAll(session, request, response);
 		}
 	}
 
-	//	private boolean ProcessLogin(HttpServletRequest request, HttpSession session) throws SQLException
-//	{
-//
-//		String username = request.getParameter("username");
-//		String password = request.getParameter("password");
-//		User us = new User(username, password);
-//		userRepository.getUserByCredentials(username, password);
-//		session.setAttribute("user", us);
-//
-//		if (us.getUserid() != 0)
-//		{
-//			return true;
-//		}
-//		else
-//		{
-//			return false;
-//		}
-//	}
-	//	private void ProcessDelete(HttpServletRequest request, HttpSession session, User user) throws SQLException
-//	{
-//		userRepository.deleteUser(user);
-//		session.setAttribute("user", user);
-//		System.out.println("userid" + user.getUserid());
-//	}
-//
-//	private boolean ProcessUserUpdate(HttpServletRequest request, User user, HttpSession session) throws SQLException
-//	{
-//		String fName = request.getParameter("f_name");
-//		String lName = request.getParameter("l_name");
-//		String email = request.getParameter("email");
-//		String username = request.getParameter("username");
-//		String profilePic = request.getParameter("profile_pic");
-//		String password = request.getParameter("password");
-//		String bio = request.getParameter("bio");
-//
-//		int UserID = user.getUserid();
-//
-//		User user1 = new User(fName, lName, email, username, profilePic, password, bio);
-//		System.out.println("in process update");
-//
-//		userRepository.updateUser(user1);
-//
-//		System.out.println("after update");
-//		session.setAttribute("user", user1);
-//		return true;
-//	}
+	
 }

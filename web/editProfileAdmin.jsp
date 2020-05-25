@@ -91,9 +91,11 @@
                     <br>
                     <select name="profile_pic" id="pic">
 
-                        <option name="profile_pic" id="pic" value = "1.jpg">Image1</option>
-                        <option name="profile_pic" id="pic" value = "ISD" ${activeUser.profile_pic == "ISD" ? "selected" : ""}>ISD</option>
-
+                        <option name="profile_pic" id="profile_pic" value = "robot_profile_red.png" >Red Robot</option>
+                          <option name="profile_pic" id="profile_pic" value = "robot_profile_blue.png" ${activeUser.profile_pic == "Blue Robot" ? "selected" : ""}>Blue Robot</option>
+						   <option name="profile_pic" id="profile_pic" value = "robot_profile_pink.png" >Pink Robot</option>
+						   <option name="profile_pic" id="profile_pic" value = "robot_profile_green.png" >Green Robot</option>
+						   <option name="profile_pic" id="profile_pic" value = "robot_profile_orange.png" >Orange Robot</option>
 
                     </select>
 

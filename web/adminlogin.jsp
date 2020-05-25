@@ -13,7 +13,7 @@
         <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         <link href="css/styles.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="${pageContext.request.contextPath}/css/form.css" rel="stylesheet" type="text/css">
+       
         <meta charset="UTF-8">
         <title>Login</title>
         <link href="${pageContext.request.contextPath}/css/form.css" rel="stylesheet" type="text/css">

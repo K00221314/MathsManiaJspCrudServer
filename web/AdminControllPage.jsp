@@ -96,7 +96,7 @@
                     <h3>Manage Users</h3>
                     <p>View all users and edit or delete users.
                     </p>
-					<a href="AdminController?menu=getUserView" class="btn btn-primary">Manage Users</a>
+					<a href="AdminController?menu=Home" class="btn btn-primary">Manage Users</a>
                 </div>
 
                 <div class="col-sm-12 col-md-4">
