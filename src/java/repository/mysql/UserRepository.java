@@ -11,26 +11,14 @@ import support.repository.Support;
 public class UserRepository
 {
 
-	/**
-	 * deletes a User by id from the repository
-	 *
-	 * @param userId
-	 * @return
-	 * @throws SQLException
-	 */
+	
 	public boolean deleteUserById(int userId) throws SQLException
 	{
 		User user = getUserById(userId);
 		return deleteUser(user);
 	}
 
-	/**
-	 * Deletes a result from the repository
-	 *
-	 * @param user
-	 * @return
-	 * @throws SQLException
-	 */
+	
 	public boolean deleteUser(User user) throws SQLException
 	{
 		Connection connection = DatabaseAgent.getConnection();

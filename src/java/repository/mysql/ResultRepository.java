@@ -11,26 +11,14 @@ import support.repository.Support;
 public class ResultRepository
 {
 
-	/**
-	 * deletes a result by id from the repository
-	 *
-	 * @param id
-	 * @return
-	 * @throws SQLException
-	 */
+	
 	public static boolean deleteResultById(int id) throws SQLException
 	{
 		Result result = getResultById(id);
 		return deleteResult(result);
 	}
 
-	/**
-	 * Deletes a result from the repository
-	 *
-	 * @param result
-	 * @return
-	 * @throws SQLException
-	 */
+	
 	public static boolean deleteResult(Result result) throws SQLException
 	{
 		Connection connection = DatabaseAgent.getConnection();
@@ -48,12 +36,7 @@ public class ResultRepository
 		}
 	}
 
-	/**
-	 *
-	 * @param Id
-	 * @return
-	 * @throws java.sql.SQLException
-	 */
+	
 	public static Result getResultById(int Id) throws SQLException
 	{
 		Connection connection = DatabaseAgent.getConnection();
@@ -101,14 +84,7 @@ public class ResultRepository
 		}
 	}
 
-	/**
-	 * Inserts a Result into the repository
-	 *
-	 * @param result
-	 * @return
-	 * @throws SQLException
-	 * @throws Exception
-	 */
+	
 	public static int insertResult(Result result) throws SQLException, Exception
 	{
 		Connection connection = DatabaseAgent.getConnection();
@@ -158,15 +134,7 @@ public class ResultRepository
 		}
 	}
 
-	/*
-	Private Methods
-	 */
-	/**
-	 *
-	 * @param resultSet
-	 * @return
-	 * @throws SQLException
-	 */
+
 	private static Result transformResultsSetToResult(ResultSet resultSet) throws SQLException
 	{
 		Result result = new Result();

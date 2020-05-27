@@ -287,12 +287,6 @@ public class AdminController extends HttpServlet
 
 	public void processUpdate(HttpServletRequest request,HttpServletResponse response, HttpSession session, User user) throws SQLException
 	{
-//		//TODO when admin pdate user it does not return to manageUsers page
-//		mapRequestParametersIntoUser(request, user);
-//
-//		userRepository.updateUser(user);
-//		SessionManager.setSessionUserValue(session, user);
-//		gotoPage("/manageUsers.jsp", request, response);
 		
 		mapRequestParametersIntoUser(request, user);
 
@@ -300,7 +294,7 @@ public class AdminController extends HttpServlet
 		{
 			userRepository.updateUser(user);
 			SessionManager.setSessionUserValue(session, user);
-			//TODO : consider active user
+			
 			processViewAll(session, request, response);;
 		}
 		catch (SQLException | ServletException | IOException ex)
@@ -332,7 +326,7 @@ public class AdminController extends HttpServlet
 		else
 		{
 			gotoPage("/AdminControllPage.jsp", request, response);
-			//processViewAll(session, request, response);
+			
 		}
 	}
 

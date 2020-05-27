@@ -5,7 +5,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="entities.User"%>
 <%
-	//FIXME:  This is demo solution, not ideal
+	
 	UserRepository userRepository = new UserRepository();
 	ArrayList<User> users = userRepository.getUsers();
 	SessionManager.setSessionUsersValue(session, users);

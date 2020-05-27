@@ -30,7 +30,7 @@ public class UserController extends HttpServlet
 
 		if (activeUser == null);
 		{
-			//TODO: Work out user security
+			
 			//gotoPage("/invalid.jsp", request, response);
 		}
 		
@@ -161,11 +161,11 @@ public class UserController extends HttpServlet
 
 		if ("Admin".equals(userType))
 		{
-//TODO Add ADmin code to navigate site
+
 		}
 		else
 		{
-			processViewAll(session, request, response);//TODO: change to go to only one user
+			processViewAll(session, request, response);
 		}
 	}
 
@@ -210,7 +210,7 @@ public class UserController extends HttpServlet
 		{
 			userRepository.updateUser(user);
 			SessionManager.setSessionUserValue(session, user);
-			//TODO : consider active user
+			
 			gotoPage("/profile.jsp", request, response);
 		}
 		catch (SQLException | ServletException | IOException ex)
@@ -222,19 +222,7 @@ public class UserController extends HttpServlet
 
 	private void processViewUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		//TODO: RD: Look up by id
-//		String idParameterString = request.getParameter("id");
-//		int userId = Integer.parseInt(idParameterString);
-//		try
-//		{
-//			User user = userRepository.getUserById(userId);
-//			SessionManager.setSessionUserValue(session, user);
-//			gotoPage("/" + WebsiteMap.DetailedUsersView, request, response);
-//		}
-//		catch (SQLException ex)
-//		{
-//			Logger.getLogger(UserController1.class.getName()).log(Level.SEVERE, null, ex);
-//		}
+		
 
 		gotoPage("/userProfile.jsp", request, response);
 	}

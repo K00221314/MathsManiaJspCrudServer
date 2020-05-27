@@ -4,11 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
-/**
- * Agent responsible for getting the database connection
- *
- * @author Rob
- */
+
 public class DatabaseAgent
 {
 	public static Connection getConnection()
